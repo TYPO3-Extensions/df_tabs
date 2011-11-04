@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallangExt>
+	<data type="array">
+		<languageKey index="de" type="array">
+			<label index="flexform.sheets.general.ajax">AJAX aktivieren</label>
+			<label index="flexform.sheets.general.autoPlayInterval">Auto-Play-Intervall</label>
+			<label index="flexform.sheets.general.data">Seiten und Inhalte, welche als Tabs gerendert werden sollen</label>
+			<label index="flexform.sheets.general.enableAutoPlayInterval">Auto-Play aktivieren</label>
+			<label index="flexform.sheets.general.enableMouseOver">MouseOver-Navigation aktivieren</label>
+			<label index="flexform.sheets.general.mode">Modus</label>
+			<label index="flexform.sheets.general.mode.0">Zeige Inhaltselemente</label>
+			<label index="flexform.sheets.general.mode.1">Zeige Seiten</label>
+			<label index="flexform.sheets.general.mode.2">Kombiniert</label>
+			<label index="flexform.sheets.general.titles">Titel der Reiter überschreiben (Trennung per Zeilenumbruch)</label>
+			<label index="plugin1_plus_wiz_description">Darstellung von Seiten oder Inhaltselementen als Tabs</label>
+			<label index="plugin1_title">Seiten/Inhalte in Tabs</label>
+			<label index="tt_content.list_type_plugin1">Seiten/Inhaltselemente in Tabs</label>
+		</languageKey>
+	</data>
+</T3locallangExt>
