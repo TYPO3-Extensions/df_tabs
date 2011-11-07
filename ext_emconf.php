@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext "df_tabs".
 #
-# Auto generated 10-10-2011 18:23
+# Auto generated 07-11-2011 14:50
 #
 # Manual updates:
 # Only the data in the array - everything else is removed by next
@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Create tab based content elements and pages easily and flexible with configurable mouseover handling, animations, ajax and autoplay features! It\'s based upon mootools.',
 	'category' => 'fe',
 	'shy' => 0,
-	'version' => '2.6.1',
+	'version' => '3.0.0',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
@@ -42,7 +42,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'suggests' => array(
 		),
 	),
-	'_md5_values_when_last_written' => 'a:27:{s:16:"ext_autoload.php";s:4:"f929";s:12:"ext_icon.gif";s:4:"0d1d";s:12:"ext_icon.png";s:4:"6b58";s:17:"ext_localconf.php";s:4:"3e2d";s:14:"ext_tables.php";s:4:"5075";s:41:"classes/data/PluginController.php";s:4:"51ad";s:63:"classes/dataprovider/AbstractBaseDataProvider.php";s:4:"9d7e";s:66:"classes/dataprovider/FactoryDataProvider.php";s:4:"ca5b";s:64:"classes/dataprovider/PagesDataProvider.php";s:4:"71c2";s:68:"classes/dataprovider/ContentDataProvider.php";s:4:"cdce";s:69:"classes/dataprovider/TypoScriptDataProvider.php";s:4:"8436";s:43:"classes/plugin1/PluginController.php";s:4:"46eb";s:51:"classes/plugin1/ContentElementWizard.php";s:4:"6055";s:40:"classes/plugin1/contentElementWizard.png";s:4:"7051";s:32:"classes/plugin1/de.locallang.xml";s:4:"9884";s:29:"classes/plugin1/locallang.xml";s:4:"f7e0";s:35:"configuration/plugin1/constants.txt";s:4:"2b6d";s:31:"configuration/plugin1/setup.txt";s:4:"edfe";s:25:"resources/css/df_tabs.css";s:4:"ec6e";s:37:"resources/css/df_tabs_alternative.css";s:4:"e195";s:31:"resources/flexforms/flexform.xml";s:4:"72c0";s:40:"resources/images/backgroundTabActive.png";s:4:"4ec0";s:51:"resources/images/backgroundTabActiveAlternative.png";s:4:"31f4";s:42:"resources/images/backgroundTabInactive.png";s:4:"0a02";s:31:"resources/javascript/df_tabs.js";s:4:"c7d5";s:47:"resources/javascript/History/History.Routing.js";s:4:"2b25";s:39:"resources/javascript/History/History.js";s:4:"897f";}',
+	'_md5_values_when_last_written' => 'a:44:{s:16:"ext_autoload.php";s:4:"7da8";s:12:"ext_icon.gif";s:4:"0d1d";s:12:"ext_icon.png";s:4:"6b58";s:17:"ext_localconf.php";s:4:"4247";s:14:"ext_tables.php";s:4:"178f";s:25:"Classes/Ajax/LoadAjax.php";s:4:"cf44";s:39:"Classes/Controller/PluginController.php";s:4:"998e";s:49:"Classes/DataProvider/AbstractBaseDataProvider.php";s:4:"f185";s:53:"Classes/DataProvider/AbstractDataBaseDataProvider.php";s:4:"ef3b";s:44:"Classes/DataProvider/ContentDataProvider.php";s:4:"c401";s:44:"Classes/DataProvider/FactoryDataProvider.php";s:4:"7542";s:46:"Classes/DataProvider/InterfaceDataProvider.php";s:4:"aace";s:42:"Classes/DataProvider/PagesDataProvider.php";s:4:"74cc";s:47:"Classes/DataProvider/TypoScriptDataProvider.php";s:4:"763d";s:28:"Classes/Domain/Model/Tab.php";s:4:"6b43";s:43:"Classes/Domain/Repository/TabRepository.php";s:4:"7caa";s:40:"Classes/Service/ConfigurationService.php";s:4:"66d7";s:31:"Classes/View/TypoScriptView.php";s:4:"dbea";s:40:"Classes/Wizards/ContentElementWizard.php";s:4:"33cf";s:36:"Configuration/FlexForms/flexform.xml";s:4:"a1dd";s:38:"Configuration/TypoScript/constants.txt";s:4:"5919";s:34:"Configuration/TypoScript/setup.txt";s:4:"678e";s:43:"Resources/Private/Language/de.locallang.xml";s:4:"c0a0";s:40:"Resources/Private/Language/locallang.xml";s:4:"a964";s:47:"Resources/Public/Images/backgroundTabActive.png";s:4:"4ec0";s:58:"Resources/Public/Images/backgroundTabActiveAlternative.png";s:4:"31f4";s:49:"Resources/Public/Images/backgroundTabInactive.png";s:4:"0a02";s:48:"Resources/Public/Images/contentElementWizard.png";s:4:"7051";s:35:"Resources/Public/Scripts/df_tabs.js";s:4:"f03a";s:51:"Resources/Public/Scripts/History/History.Routing.js";s:4:"37be";s:43:"Resources/Public/Scripts/History/History.js";s:4:"2e43";s:40:"Resources/Public/StyleSheets/df_tabs.css";s:4:"9171";s:52:"Resources/Public/StyleSheets/df_tabs_alternative.css";s:4:"b5fe";s:27:"Tests/Unit/BaseTestCase.php";s:4:"1982";s:56:"Tests/Unit/DataProvider/AbstractBaseDataProviderTest.php";s:4:"875b";s:60:"Tests/Unit/DataProvider/AbstractDataBaseDataProviderTest.php";s:4:"37a5";s:51:"Tests/Unit/DataProvider/FactoryDataProviderTest.php";s:4:"a9d6";s:49:"Tests/Unit/DataProvider/PagesDataProviderTest.php";s:4:"7710";s:54:"Tests/Unit/DataProvider/TypoScriptDataProviderTest.php";s:4:"88d8";s:35:"Tests/Unit/Domain/Model/TabTest.php";s:4:"1983";s:50:"Tests/Unit/Domain/Repository/TabRepositoryTest.php";s:4:"d64d";s:47:"Tests/Unit/Service/ConfigurationServiceTest.php";s:4:"aa24";s:38:"Tests/Unit/View/TypoScriptViewTest.php";s:4:"0ce5";s:14:"doc/manual.sxw";s:4:"6e90";}',
 	'suggests' => array(
 	),
 );
