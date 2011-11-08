@@ -176,8 +176,8 @@ class Tx_DfTabs_View_TypoScriptView {
 		$classes = $this->addPrefix('tabMenuEntry') .
 			($index === 0 ? ' ' . $this->addPrefix('tabMenuEntrySelected') : '');
 		$id = $this->addPrefix('tabMenuEntry' . $index);
-		$hash = '#' . $this->pluginConfiguration['hashName'] . $index;
 		$linkId = $this->pluginConfiguration['hashName'] . $index;
+		$hash = $this->contentObject->currentPageUrl(t3lib_div::_GET()) . '#' . $linkId;
 
 		$typolink = $target = '';
 		if (strpos($menuEntry, '###LINK###') !== FALSE) {
