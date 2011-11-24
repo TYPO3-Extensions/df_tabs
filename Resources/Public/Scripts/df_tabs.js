@@ -396,10 +396,8 @@ var TabBar = new Class({
 	 * @return {TabBar}
 	 */
 	stopAutoPlay: function() {
-		(function() {
-			clearInterval(this.autoPlay);
-			this.autoPlay = null;
-		}).delay(100, this);
+		clearInterval(this.autoPlay);
+		this.autoPlay = null;
 
 		return this;
 	}
