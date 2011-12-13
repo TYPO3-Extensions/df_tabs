@@ -162,26 +162,26 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 		return array(
 			'basic element' => array(
 				array($tabElement), $pluginConfigurationWithMostSubstitutionTerms,
-				'<ul class="tabMenu" id="tabMenu-10"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li></ul>' . chr(10) .
-				'<div class="tabContents" id="tabContents-10"><h4 class="tabTitle">Foo</h4>' . chr(10) .
+				'<ul class="tabMenu" id="tabMenu-1"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li></ul>' . chr(10) .
+				'<div class="tabContents" id="tabContents-1"><h4 class="tabTitle">Foo</h4>' . chr(10) .
 				'<div class="tabContent tabContentSelected" id="tabContent0">Bar</div></div>' . chr(10)
 			),
 			'basic element with linked tab menu' => array(
 				array($tabElement), $pluginConfigurationWithLinkedTabMenuEntry,
-				'<ul class="tabMenu" id="tabMenu-10"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="http://www.google.de" target="http://www.google.de" id="0">Foo</a></li></ul>' . chr(10) .
-				'<div class="tabContents" id="tabContents-10"><h4 class="tabTitle">Foo</h4>' . chr(10) .
+				'<ul class="tabMenu" id="tabMenu-1"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="http://www.google.de" target="http://www.google.de" id="0">Foo</a></li></ul>' . chr(10) .
+				'<div class="tabContents" id="tabContents-1"><h4 class="tabTitle">Foo</h4>' . chr(10) .
 				'<div class="tabContent tabContentSelected" id="tabContent0">Bar</div></div>' . chr(10)
 			),
 			'basic element with class prefix' => array(
 				array($tabElement), $pluginConfigurationWithClassPrefix,
-				'<ul class="prefix-tabMenu" id="prefix-tabMenu-10"><li id="prefix-tabMenuEntry0" class="prefix-tabMenuEntry prefix-tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li></ul>' . chr(10) .
-				'<div class="prefix-tabContents" id="prefix-tabContents-10"><h4 class="prefix-tabTitle">Foo</h4>' . chr(10) .
+				'<ul class="prefix-tabMenu" id="prefix-tabMenu-1"><li id="prefix-tabMenuEntry0" class="prefix-tabMenuEntry prefix-tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li></ul>' . chr(10) .
+				'<div class="prefix-tabContents" id="prefix-tabContents-1"><h4 class="prefix-tabTitle">Foo</h4>' . chr(10) .
 				'<div class="prefix-tabContent prefix-tabContentSelected" id="prefix-tabContent0">Bar</div></div>' . chr(10)
 			),
 			'basic element * 2' => array(
 				array($tabElement, $tabElement), $pluginConfigurationWithMostSubstitutionTerms,
-				'<ul class="tabMenu" id="tabMenu-10"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li><li id="tabMenuEntry1" class="tabMenuEntry"><a href="#1" id="1">Foo</a></li></ul>' . chr(10) .
-				'<div class="tabContents" id="tabContents-10"><h4 class="tabTitle">Foo</h4>' . chr(10) .
+				'<ul class="tabMenu" id="tabMenu-1"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li><li id="tabMenuEntry1" class="tabMenuEntry"><a href="#1" id="1">Foo</a></li></ul>' . chr(10) .
+				'<div class="tabContents" id="tabContents-1"><h4 class="tabTitle">Foo</h4>' . chr(10) .
 				'<div class="tabContent tabContentSelected" id="tabContent0">Bar</div><h4 class="tabTitle">Foo</h4>' . chr(10) .
 				'<div class="tabContent" id="tabContent1">Bar</div></div>' . chr(10)
 			),
@@ -203,7 +203,6 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 		/** @noinspection PhpUndefinedMethodInspection */
 		$this->contentObject->expects($this->any())->method('typoLink')
 			->will($this->returnValue('http://www.google.de'));
-		$this->contentObject->data['uid'] = 10;
 
 		$this->fixture->injectPluginConfiguration($pluginConfiguration);
 		$this->assertSame($expectedContent, $this->fixture->renderTabs($tabElements));
