@@ -30,7 +30,7 @@
  * @package	TYPO3
  * @subpackage df_tabs
  */
-class Tx_DfTabs_View_TypoScriptView {
+class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 	/**
 	 * @var array
 	 */
@@ -47,7 +47,14 @@ class Tx_DfTabs_View_TypoScriptView {
 	 * @var tslib_cObj
 	 */
 	protected $contentObject = NULL;
-	
+
+	/**
+	 * Internal plugin counter
+	 *
+	 * @var int
+	 */
+	protected $counter = 1;
+
 	/**
 	 * Injects the plugin configuration
 	 *
@@ -90,9 +97,7 @@ class Tx_DfTabs_View_TypoScriptView {
 			return;
 		}
 
-		$uid = $this->contentObject->data['uid'];
 		$config = &$this->pluginConfiguration;
-
 		$animationCallback = '';
 		if ($config['animationCallback'] !== '') {
 			$animationCallback = ',animationCallback: ' . $config['animationCallback'];
@@ -103,9 +108,9 @@ class Tx_DfTabs_View_TypoScriptView {
 			document.documentElement.className = "' . $this->addPrefix('plugin1-hasJS') . ' "
 				+ document.documentElement.className;
 			window.addEvent("domready", function() {
-				this.TabBar' . $uid . ' = new TabBar(
-					$$("#' . $this->addPrefix('tabMenu-' . $uid) . ' > ' . $config['menuNodeType'] . '"),
-					$$("#' . $this->addPrefix('tabContents-' . $uid) . ' > ' . $config['contentNodeType'] . '"), {
+				this.TabBar' . $this->counter . ' = new TabBar(
+					$$("#' . $this->addPrefix('tabMenu-' . $this->counter) . ' > ' . $config['menuNodeType'] . '"),
+					$$("#' . $this->addPrefix('tabContents-' . $this->counter) . ' > ' . $config['contentNodeType'] . '"), {
 						autoPlayInterval: ' . $config['autoPlayInterval'] . ',
 						enableAjax: ' . ($config['ajax'] ? 'true' : 'false') . ',
 						ajaxPageId: ' . intval($GLOBALS['TSFE']->id) . ',
@@ -126,9 +131,11 @@ class Tx_DfTabs_View_TypoScriptView {
 		';
 
 		$this->pageRenderer->addJsFooterInlineCode(
-			$this->addPrefix('plugin1') . 'tx_dftabs_' . $uid,
+			$this->addPrefix('plugin1') . 'tx_dftabs_' . $this->counter,
 			$inlineJavaScript
 		);
+
+		++$this->counter;
 	}
 
 	/**
@@ -150,13 +157,13 @@ class Tx_DfTabs_View_TypoScriptView {
 
 		$tabContents = str_replace(
 			array('###CLASSES###', '###ID###'),
-			array($this->addPrefix('tabContents'), $this->addPrefix('tabContents-' . $this->contentObject->data['uid'])),
+			array($this->addPrefix('tabContents'), $this->addPrefix('tabContents-' . $this->counter)),
 			$this->stdWrap($tabContents, 'tabContents')
 		);
 
 		$tabMenuEntries = str_replace(
 			array('###CLASSES###', '###ID###'),
-			array($this->addPrefix('tabMenu'), $this->addPrefix('tabMenu-' . $this->contentObject->data['uid'])),
+			array($this->addPrefix('tabMenu'), $this->addPrefix('tabMenu-' . $this->counter)),
 			$this->stdWrap($tabMenuEntries, 'tabMenu')
 		);
 
