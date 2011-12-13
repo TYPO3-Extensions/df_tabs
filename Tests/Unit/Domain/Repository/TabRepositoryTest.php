@@ -58,9 +58,9 @@ class Tx_DfTabs_Domain_Repository_TabRepositoryTest extends Tx_DfTabs_BaseTestCa
 	 * @return void
 	 */
 	public function pluginConfigurationCanBeInjected() {
-		/** @noinspection PhpUndefinedMethodInspection */
 		$configuration = array('foo');
 		$this->fixture->injectPluginConfiguration($configuration);
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->assertSame($configuration, $this->fixture->_get('pluginConfiguration'));
 	}
 
@@ -69,9 +69,9 @@ class Tx_DfTabs_Domain_Repository_TabRepositoryTest extends Tx_DfTabs_BaseTestCa
 	 * @return void
 	 */
 	public function contentObjectCanBeInjected() {
-		/** @noinspection PhpUndefinedMethodInspection */
 		$contentObject = new tslib_cObj;
 		$this->fixture->injectContentObject($contentObject);
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->assertSame($contentObject, $this->fixture->_get('contentObject'));
 	}
 
@@ -82,8 +82,8 @@ class Tx_DfTabs_Domain_Repository_TabRepositoryTest extends Tx_DfTabs_BaseTestCa
 	public function buildTabElementsReturnsATabElementCollectionWithPreferredAndDefaultTitle() {
 		$this->fixture->injectPluginConfiguration(array('defaultTabTitle' => 'Title2'));
 
-		/** @noinspection PhpUndefinedMethodInspection */
 		$dataProvider = $this->getMock('Tx_DfTabs_DataProvider_AbstractBaseDataProvider');
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->fixture->expects($this->exactly(2))->method('getDataProvider')->will($this->returnValue($dataProvider));
 		$dataProvider->expects($this->exactly(2))->method('getTabContent')->will($this->returnValue('Foo'));
 		$dataProvider->expects($this->exactly(2))->method('getLinkData')->will($this->returnValue(''));
@@ -104,8 +104,8 @@ class Tx_DfTabs_Domain_Repository_TabRepositoryTest extends Tx_DfTabs_BaseTestCa
 	 * @return void
 	 */
 	public function buildTabElementsReturnsATabElementCollectionDefinedByRecordsWithCalculatedTitles() {
-		/** @noinspection PhpUndefinedMethodInspection */
 		$dataProvider = $this->getMock('Tx_DfTabs_DataProvider_AbstractBaseDataProvider');
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->fixture->expects($this->exactly(2))->method('getDataProvider')->will($this->returnValue($dataProvider));
 		$dataProvider->expects($this->exactly(2))->method('getTabContent')->will($this->returnValue('Foo'));
 		$dataProvider->expects($this->exactly(2))->method('getLinkData')->will($this->returnValue(''));
@@ -126,8 +126,8 @@ class Tx_DfTabs_Domain_Repository_TabRepositoryTest extends Tx_DfTabs_BaseTestCa
 	 * @return void
 	 */
 	public function buildTabElementsReturnsATabElementCollectionWithMixedProviders() {
-		/** @noinspection PhpUndefinedMethodInspection */
 		$dataProvider = $this->getMock('Tx_DfTabs_DataProvider_AbstractBaseDataProvider');
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->fixture->expects($this->exactly(2))->method('getDataProvider')->will($this->returnValue($dataProvider));
 		$dataProvider->expects($this->exactly(2))->method('getTabContent')->will($this->returnValue('Foo'));
 		$dataProvider->expects($this->exactly(2))->method('getLinkData')->will($this->returnValue(''));
@@ -150,8 +150,8 @@ class Tx_DfTabs_Domain_Repository_TabRepositoryTest extends Tx_DfTabs_BaseTestCa
 	public function buildTabElementsReturnsATabElementCollectionWithAjaxInMind() {
 		$this->fixture->injectPluginConfiguration(array('ajax' => '1',));
 
-		/** @noinspection PhpUndefinedMethodInspection */
 		$dataProvider = $this->getMock('Tx_DfTabs_DataProvider_AbstractBaseDataProvider');
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->fixture->expects($this->exactly(2))->method('getDataProvider')->will($this->returnValue($dataProvider));
 		$dataProvider->expects($this->once())->method('getAjaxFallbackText')->will($this->returnValue('Fallback'));
 		$dataProvider->expects($this->once())->method('getTabContent')->will($this->returnValue('Foo'));
@@ -188,8 +188,8 @@ class Tx_DfTabs_Domain_Repository_TabRepositoryTest extends Tx_DfTabs_BaseTestCa
 		);
 		$this->fixture->injectPluginConfiguration($pluginConfiguration);
 
-		/** @noinspection PhpParamsInspection */
 		$contentObject = $this->getMock('tslib_cObj');
+		/** @noinspection PhpParamsInspection */
 		$this->fixture->injectContentObject($contentObject);
 		$contentObject->expects($this->once())->method('stdWrap')->will($this->returnValue('pages_2,tt_content_2'));
 

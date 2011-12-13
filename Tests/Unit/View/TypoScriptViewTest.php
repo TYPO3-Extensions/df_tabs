@@ -66,9 +66,9 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 	 * @return void
 	 */
 	public function pluginConfigurationCanBeInjected() {
-		/** @noinspection PhpUndefinedMethodInspection */
 		$configuration = array('foo' => 'bar');
 		$this->fixture->injectPluginConfiguration($configuration);
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->assertSame($configuration, $this->fixture->_get('pluginConfiguration'));
 	}
 
@@ -77,9 +77,9 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 	 * @return void
 	 */
 	public function pageRendererCanBeInjected() {
-		/** @noinspection PhpUndefinedMethodInspection */
 		$pageRenderer = new t3lib_PageRenderer();
 		$this->fixture->injectPageRenderer($pageRenderer);
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->assertSame($pageRenderer, $this->fixture->_get('pageRenderer'));
 	}
 
@@ -88,9 +88,9 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 	 * @return void
 	 */
 	public function contentObjectCanBeInjected() {
-		/** @noinspection PhpUndefinedMethodInspection */
 		$contentObject = new tslib_cObj();
 		$this->fixture->injectContentObject($contentObject);
+		/** @noinspection PhpUndefinedMethodInspection */
 		$this->assertSame($contentObject, $this->fixture->_get('contentObject'));
 	}
 
@@ -102,8 +102,8 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 		$configuration = array('enableJavascript' => '1');
 		$this->fixture->injectPluginConfiguration($configuration);
 
-		/** @noinspection PhpParamsInspection */
 		$pageRenderer = $this->getMock('t3lib_pageRenderer');
+		/** @noinspection PhpParamsInspection */
 		$this->fixture->injectPageRenderer($pageRenderer);
 
 		$pageRenderer->expects($this->once())->method('addJsFooterInlineCode');
@@ -115,8 +115,8 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 	 * @return void
 	 */
 	public function addInlineJavaScriptCodeDoesNotAddJsCodeIfItIsPermittedByConfiguration() {
-		/** @noinspection PhpParamsInspection */
 		$pageRenderer = $this->getMock('t3lib_pageRenderer');
+		/** @noinspection PhpParamsInspection */
 		$this->fixture->injectPageRenderer($pageRenderer);
 
 		$pageRenderer->expects($this->never())->method('addJsFooterInlineCode');

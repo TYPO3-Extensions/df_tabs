@@ -70,7 +70,7 @@ class Tx_DfTabs_Service_ConfigurationServiceTest extends Tx_DfTabs_BaseTestCase 
 	 * @return void
 	 */
 	public function controllerContextCanBeInjected() {
-		/** @noinspection PhpParamsInspection */
+		/** @var $context tx_dftabs_plugin1 */
 		$context = $this->getMock('tx_dftabs_plugin1');
 		$this->fixture->injectControllerContext($context);
 

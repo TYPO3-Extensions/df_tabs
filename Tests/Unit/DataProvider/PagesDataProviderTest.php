@@ -67,7 +67,7 @@ class Tx_DfTabs_DataProvider_PagesDataProviderTest extends Tx_DfTabs_BaseTestCas
 	 * @return void
 	 */
 	public function getContentUidsReturnsTtContentUids() {
-		/** @noinspection PhpParamsInspection */
+		/** @var $contentObject tslib_cObj */
 		$contentObject = $this->getMock('tslib_cObj');
 		$this->fixture->injectContentObject($contentObject);
 
