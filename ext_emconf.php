@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Create tab based content elements and pages easily and flexible with configurable mouseover handling, animations, ajax and autoplay features! It\'s based upon mootools.',
 	'category' => 'fe',
 	'shy' => 0,
-	'version' => '3.0.1',
+	'version' => '3.0.2',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
@@ -34,8 +34,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'CGLcompliance_note' => '',
 	'constraints' => array(
 		'depends' => array(
-			'php' => '5.2.0-5.3.99',
-			'typo3' => '4.5.0-4.6.99',
+			'php' => '5.3.0-5.3.99',
+			'typo3' => '4.6.0-4.6.99',
 		),
 		'conflicts' => array(
 		),
