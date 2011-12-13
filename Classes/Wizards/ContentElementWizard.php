@@ -37,7 +37,9 @@ class Tx_DfTabs_Wizards_ContentElementWizard {
 	 * @return array modified array with wizard items
 	 */
 	public function proc($wizardItems) {
-		$locallang = t3lib_div::readLLXMLfile(
+		/** @var $localizationParser t3lib_l10n_parser_Llxml */
+		$localizationParser = t3lib_div::makeInstance('t3lib_l10n_parser_Llxml');
+		$locallang = $localizationParser->getParsedData(
 			t3lib_extMgm::extPath('df_tabs') . 'Resources/Private/Language/locallang.xml',
 			$GLOBALS['LANG']->lang
 		);
