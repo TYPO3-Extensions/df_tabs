@@ -234,14 +234,17 @@ var TabBar = new Class({
 
 			// called if match of the History key occurred while the hash of the url changed
 			onMatch: function(values) {
-				var index = parseInt(values[0], 10);
+				if (!values.length && window.location.hash !== '') {
+					return;
+				}
 
+				var index = parseInt(values[0], 10);
 				if (isNaN(index) && this.previousTab !== this.options.startIndex) {
-					this.display(this.options.startIndex);
+					this.display(this.options.startIndex, false);
 					this.fireEvent('historyBackToStartPage', this);
 
 				} else if (index >= 0 && index < this.elementMap.length) {
-					this.display(index);
+					this.display(index, false);
 					this.fireEvent('menuEntryClicked', [this, index]);
 				}
 			}.bind(this)
