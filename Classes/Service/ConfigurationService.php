@@ -96,6 +96,12 @@ class Tx_DfTabs_Service_ConfigurationService {
 	 */
 	protected function getTypoScriptConfiguration() {
 		$configuration = (array) $this->controllerContext->conf;
+		foreach ($configuration as $key => &$option) {
+			if ($key{strlen($key) - 1} !== '.' && isset($configuration[$key . '.'])) {
+				$option = $this->controllerContext->cObj->stdWrap($option, $configuration[$key . '.']);
+			}
+		}
+
 		if (isset($configuration['titles'])) {
 			$configuration['titles'] = t3lib_div::trimExplode(',', $configuration['titles']);
 		}
