@@ -158,7 +158,7 @@ var TabBar = new Class({
 			var links = element.contentItem.getElements('a');
 			links.each(function(link) {
 				var parts = link.href.split('#');
-				if (parts[0] === location.href.split('#')[0]) {
+				if (parts[1] && parts[0] === location.href.split('#')[0]) {
 					var index = parts[1].substr(this.options.hashName.length);
 					link.addEvent('click', this.scrollToTab.pass(index, this));
 				}
