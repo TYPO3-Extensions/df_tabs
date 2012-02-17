@@ -37,10 +37,10 @@ class Tx_DfTabs_Wizards_ContentElementWizard {
 	 * @return array modified array with wizard items
 	 */
 	public function proc($wizardItems) {
-		/** @var $localizationParser t3lib_l10n_parser_Llxml */
-		$localizationParser = t3lib_div::makeInstance('t3lib_l10n_parser_Llxml');
+		/** @var $localizationParser t3lib_l10n_parser_Xliff */
+		$localizationParser = t3lib_div::makeInstance('t3lib_l10n_parser_Xliff');
 		$locallang = $localizationParser->getParsedData(
-			t3lib_extMgm::extPath('df_tabs') . 'Resources/Private/Language/locallang.xml',
+			t3lib_extMgm::extPath('df_tabs') . 'Resources/Private/Language/locallang.xlf',
 			$GLOBALS['LANG']->lang
 		);
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2012-02-17T17:44:27Z">
+		<header>
+			<type>module</type>
+			<description>Language labels for plugin &quot;tx_dftabs_plugin1&quot;</description>
+			<generator>LFEditor</generator>
+			<authorName>Stefan Galinski</authorName>
+			<authorEmail>stefan.galinski@gmail.com</authorEmail>
+		</header>
+		<body>
+		<trans-unit id="flexform.sheets.general.ajax" xml:space="preserve">
+			<source>Enable AJAX</source>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.autoPlayInterval" xml:space="preserve">
+			<source>Autoplay Interval</source>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.data" xml:space="preserve">
+			<source>Pages and content that should be rendered as tabs</source>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.enableAutoPlayInterval" xml:space="preserve">
+			<source>Enable Autoplay</source>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.enableMouseOver" xml:space="preserve">
+			<source>Enable MouseOver Navigation</source>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.mode" xml:space="preserve">
+			<source>Mode</source>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.mode.0" xml:space="preserve">
+			<source>Show Content Elements</source>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.mode.1" xml:space="preserve">
+			<source>Show Pages</source>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.mode.2" xml:space="preserve">
+			<source>Combined</source>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.titles" xml:space="preserve">
+			<source>Override Tab Titles (separation with newlines)</source>
+		</trans-unit>
+		<trans-unit id="noContentFound" xml:space="preserve">
+			<source>Didn't found any content for rendering of the tabs. Please check your plugin configuration.</source>
+		</trans-unit>
+		<trans-unit id="plugin1_plus_wiz_description" xml:space="preserve">
+			<source>Show pages or content elements like tabs</source>
+		</trans-unit>
+		<trans-unit id="plugin1_title" xml:space="preserve">
+			<source>Pages/Content Elements In Tabs</source>
+		</trans-unit>
+		<trans-unit id="tt_content.list_type_plugin1" xml:space="preserve">
+			<source>Pages/Content Elements In Tabs</source>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

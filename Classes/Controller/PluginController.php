@@ -31,7 +31,7 @@
  */
 class tx_dftabs_plugin1 extends tslib_pibase {
 	public $prefixId = 'tx_dftabs_plugin1';
-	public $scriptRelPath = 'Resources/Private/Language/locallang.xml';
+	public $scriptRelPath = 'Resources/Private/Language/locallang.xlf';
 	public $extKey = 'df_tabs';
 	public $pi_checkCHash = TRUE;
 

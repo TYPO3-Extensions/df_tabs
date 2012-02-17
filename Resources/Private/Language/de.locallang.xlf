@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2012-02-17T17:44:27Z">
+		<header>
+			<type>module</type>
+			<description>Language labels for plugin &quot;tx_dftabs_plugin1&quot;</description>
+			<generator>LFEditor</generator>
+			<authorName>Stefan Galinski</authorName>
+			<authorEmail>stefan.galinski@gmail.com</authorEmail>
+		</header>
+		<body>
+		<trans-unit id="flexform.sheets.general.ajax" approved="yes" xml:space="preserve">
+			<source>Enable AJAX</source>
+			<target>AJAX aktivieren</target>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.autoPlayInterval" approved="yes" xml:space="preserve">
+			<source>Autoplay Interval</source>
+			<target>Auto-Play-Intervall</target>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.data" approved="yes" xml:space="preserve">
+			<source>Pages and content that should be rendered as tabs</source>
+			<target>Seiten und Inhalte, welche als Tabs gerendert werden sollen</target>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.enableAutoPlayInterval" approved="yes" xml:space="preserve">
+			<source>Enable Autoplay</source>
+			<target>Auto-Play aktivieren</target>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.enableMouseOver" approved="yes" xml:space="preserve">
+			<source>Enable MouseOver Navigation</source>
+			<target>MouseOver-Navigation aktivieren</target>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.mode" approved="yes" xml:space="preserve">
+			<source>Mode</source>
+			<target>Modus</target>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.mode.0" approved="yes" xml:space="preserve">
+			<source>Show Content Elements</source>
+			<target>Zeige Inhaltselemente</target>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.mode.1" approved="yes" xml:space="preserve">
+			<source>Show Pages</source>
+			<target>Zeige Seiten</target>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.mode.2" approved="yes" xml:space="preserve">
+			<source>Combined</source>
+			<target>Kombiniert</target>
+		</trans-unit>
+		<trans-unit id="flexform.sheets.general.titles" approved="yes" xml:space="preserve">
+			<source>Override Tab Titles (separation with newlines)</source>
+			<target>Titel der Reiter überschreiben (Trennung per Zeilenumbruch)</target>
+		</trans-unit>
+		<trans-unit id="noContentFound" approved="yes" xml:space="preserve">
+			<source>Didn't found any content for rendering of the tabs. Please check your plugin configuration.</source>
+			<target>Es wurde kein Inhalt für das Rendering der Tabs gefunden. Bitte überprüfen Sie die Plugin-Konfiguration.</target>
+		</trans-unit>
+		<trans-unit id="plugin1_plus_wiz_description" approved="yes" xml:space="preserve">
+			<source>Show pages or content elements like tabs</source>
+			<target>Darstellung von Seiten oder Inhaltselementen als Tabs</target>
+		</trans-unit>
+		<trans-unit id="plugin1_title" approved="yes" xml:space="preserve">
+			<source>Pages/Content Elements In Tabs</source>
+			<target>Seiten/Inhalte in Tabs</target>
+		</trans-unit>
+		<trans-unit id="tt_content.list_type_plugin1" approved="yes" xml:space="preserve">
+			<source>Pages/Content Elements In Tabs</source>
+			<target>Seiten/Inhaltselemente in Tabs</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

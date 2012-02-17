@@ -6,21 +6,21 @@
 		<el>
 			<mode>
 				<TCEforms>
-					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:flexform.sheets.general.mode</label>
+					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:flexform.sheets.general.mode</label>
 					<onChange>reload</onChange>
 					<config>
 						<type>select</type>
 						<items type="array">
 							<numIndex index="0" type="array">
-								<numIndex index="0">LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:flexform.sheets.general.mode.0</numIndex>
+								<numIndex index="0">LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:flexform.sheets.general.mode.0</numIndex>
 								<numIndex index="1">tt_content</numIndex>
 							</numIndex>
 							<numIndex index="1" type="array">
-								<numIndex index="0">LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:flexform.sheets.general.mode.1</numIndex>
+								<numIndex index="0">LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:flexform.sheets.general.mode.1</numIndex>
 								<numIndex index="1">pages</numIndex>
 							</numIndex>
 							<numIndex index="2" type="array">
-								<numIndex index="0">LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:flexform.sheets.general.mode.2</numIndex>
+								<numIndex index="0">LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:flexform.sheets.general.mode.2</numIndex>
 								<numIndex index="1">combined</numIndex>
 							</numIndex>
 						</items>
@@ -30,7 +30,7 @@
 
 			<data>
 				<TCEforms>
-					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:flexform.sheets.general.data</label>
+					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:flexform.sheets.general.data</label>
 					<config>
 						<type>group</type>
 						<internal_type>db</internal_type>
@@ -46,7 +46,7 @@
 
 			<titles>
 				<TCEforms>
-					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:flexform.sheets.general.titles</label>
+					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:flexform.sheets.general.titles</label>
 					<config>
 						<type>text</type>
 						<cols>30</cols>
@@ -57,7 +57,7 @@
 
 			<ajax>
 				<TCEforms>
-					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:flexform.sheets.general.ajax</label>
+					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:flexform.sheets.general.ajax</label>
 					<config>
 						<type>check</type>
 						<default>0</default>
@@ -67,7 +67,7 @@
 
 			<enableAutoPlay>
 				<TCEforms>
-					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:flexform.sheets.general.enableAutoPlayInterval</label>
+					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:flexform.sheets.general.enableAutoPlayInterval</label>
 					<config>
 						<type>check</type>
 						<default>0</default>
@@ -77,7 +77,7 @@
 
 			<autoPlayInterval>
 				<TCEforms>
-					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:flexform.sheets.general.autoPlayInterval</label>
+					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:flexform.sheets.general.autoPlayInterval</label>
 					<config>
 						<type>input</type>
 						<size>5</size>
@@ -90,7 +90,7 @@
 
 			<enableMouseOver>
 				<TCEforms>
-					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:flexform.sheets.general.enableMouseOver</label>
+					<label>LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:flexform.sheets.general.enableMouseOver</label>
 					<config>
 						<type>check</type>
 						<default>0</default>

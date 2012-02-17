@@ -146,7 +146,7 @@ class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 	 */
 	public function renderTabs($tabElements) {
 		if (!count($tabElements)) {
-			return $GLOBALS['LANG']->sL('LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:noContentFound');
+			return $GLOBALS['LANG']->sL('LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:noContentFound');
 		}
 
 		$tabContents = $tabMenuEntries = '';

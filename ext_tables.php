@@ -19,7 +19,7 @@ t3lib_extMgm::addPiFlexFormValue($_EXTKEY . '_plugin1', 'FILE:EXT:df_tabs/Config
 	// add plugin
 t3lib_extMgm::addPlugin(
 	array(
-		'LLL:EXT:df_tabs/Resources/Private/Language/locallang.xml:tt_content.list_type_plugin1',
+		'LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:tt_content.list_type_plugin1',
 		$_EXTKEY . '_plugin1',
 		t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Images/contentElementWizard.png'
 	),
