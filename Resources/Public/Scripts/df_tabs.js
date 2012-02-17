@@ -113,7 +113,7 @@ var TabBar = new Class({
 		this.fireEvent('onBeforeInitialize', this);
 
 		this.previousTab = this.options.startIndex;
-		this.parseContentLinks().addEvents().startAutoPlay().initHistory();
+		this.parseContentLinks().addEvents().initAutoPlay().initHistory();
 
 		this.fireEvent('onAfterInitialize', this);
 	},
@@ -209,6 +209,41 @@ var TabBar = new Class({
 				}
 			}
 		}.bind(this));
+
+		return this;
+	},
+
+	/**
+	 * Initializes the autoplay mechanism based on the visibility state
+	 *
+	 * Note: If the visibility state isn't available, the autplay functionality is
+	 * started directly.
+	 *
+	 * @return {TabBar}
+	 */
+	initAutoPlay: function() {
+		var hidden = null,
+			visibilityChange = null;
+		if (typeof document.hidden !== 'undefined') {
+			hidden = 'hidden';
+			visibilityChange = 'visibilitychange';
+		} else if (typeof document.mozHidden !== 'undefined') {
+			hidden = 'mozHidden';
+			visibilityChange = 'mozvisibilitychange';
+		} else if (typeof document.msHidden !== 'undefined') {
+			hidden = 'msHidden';
+			visibilityChange = 'msvisibilitychange';
+		} else if (typeof document.webkitHidden !== 'undefined') {
+			hidden = 'webkitHidden';
+			visibilityChange = 'webkitvisibilitychange';
+		}
+
+		if (visibilityChange) {
+			document.addEventListener(visibilityChange, this.toggleAutoplayBasedOnVisibility.bind(this, [hidden]), false);
+			this.toggleAutoplayBasedOnVisibility(hidden);
+		} else {
+			this.startAutoPlay();
+		}
 
 		return this;
 	},
@@ -362,6 +397,22 @@ var TabBar = new Class({
 				setStyle('visibility', 'hidden').setStyle('visibility', 'visible');
 		} else {
 			this.elementMap[this.previousTab].menuItem.removeClass(selectedClass);
+		}
+
+		return this;
+	},
+
+	/**
+	 * Toggles the autplay setting based on the visibility state of the page
+	 *
+	 * @param {string} hidden field with the hidden state in the document object
+	 * @return {TabBar}
+	 */
+	toggleAutoplayBasedOnVisibility: function(hidden) {
+		if (!document[hidden]) {
+			this.startAutoPlay();
+		} else {
+			this.stopAutoPlay();
 		}
 
 		return this;
