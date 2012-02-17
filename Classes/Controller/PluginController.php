@@ -111,14 +111,13 @@ class tx_dftabs_plugin1 extends tslib_pibase {
 			$this->pi_loadLL();
 			$this->pi_initPIflexForm();
 
-			$configurationManager = $this->getConfigurationManager();
-			$this->pluginConfiguration = $configurationManager->getConfiguration();
+			$this->pluginConfiguration = $this->getConfigurationManager()->getConfiguration();
 
 			$repository = $this->getTabRepository();
 			$renderer = $this->getRenderer();
 
 			$records = $repository->getRecords();
-			$tabElements = $repository->buildTabElements((array) $this->pluginConfiguration['titles'], $records);
+			$tabElements = $repository->buildTabElements($this->pluginConfiguration['titles'], $records);
 			$content .= $renderer->renderTabs($tabElements);
 			$renderer->addInlineJavaScriptCode($records, $this->pluginConfiguration['mode']);
 

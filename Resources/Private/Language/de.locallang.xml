@@ -12,6 +12,7 @@
 			<label index="flexform.sheets.general.mode.1">Zeige Seiten</label>
 			<label index="flexform.sheets.general.mode.2">Kombiniert</label>
 			<label index="flexform.sheets.general.titles">Titel der Reiter überschreiben (Trennung per Zeilenumbruch)</label>
+			<label index="noContentFound">Es wurde kein Inhalt für das Rendering der Tabs gefunden. Bitte überprüfen Sie die Plugin-Konfiguration.</label>
 			<label index="plugin1_plus_wiz_description">Darstellung von Seiten oder Inhaltselementen als Tabs</label>
 			<label index="plugin1_title">Seiten/Inhalte in Tabs</label>
 			<label index="tt_content.list_type_plugin1">Seiten/Inhaltselemente in Tabs</label>

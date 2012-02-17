@@ -17,6 +17,7 @@
 			<label index="flexform.sheets.general.mode.1">Show Pages</label>
 			<label index="flexform.sheets.general.mode.2">Combined</label>
 			<label index="flexform.sheets.general.titles">Override Tab Titles (separation with newlines)</label>
+			<label index="noContentFound">Didn't found any content for rendering of the tabs. Please check your plugin configuration.</label>
 			<label index="plugin1_plus_wiz_description">Show pages or content elements like tabs</label>
 			<label index="plugin1_title">Pages/Content Elements In Tabs</label>
 			<label index="tt_content.list_type_plugin1">Pages/Content Elements In Tabs</label>

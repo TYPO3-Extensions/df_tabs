@@ -103,7 +103,7 @@ class Tx_DfTabs_Service_ConfigurationService {
 		}
 
 		if (isset($configuration['titles'])) {
-			$configuration['titles'] = t3lib_div::trimExplode(',', $configuration['titles']);
+			$configuration['titles'] = t3lib_div::trimExplode(',', $configuration['titles'], TRUE);
 		}
 
 		return $configuration;
