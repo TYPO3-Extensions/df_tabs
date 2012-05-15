@@ -34,7 +34,7 @@ final class Tx_DfTabs_DataProvider_FactoryDataProvider {
 	 * Returns a table instance based upon the given type. The additional parameters are used
 	 * to instantiate the table instance with needed information's.
 	 *
-	 * @throws Exception if no valid data provider could be created
+	 * @throws tx_dftabs_Exception_GenericException if no valid data provider could be created
 	 * @param string $type pages, tt_content, typoscript, ...
 	 * @param array $pluginConfiguration
 	 * @param tslib_cObj $contentObject
@@ -49,7 +49,7 @@ final class Tx_DfTabs_DataProvider_FactoryDataProvider {
 		} elseif ($type === 'typoscript') {
 			$dataProvider = t3lib_div::makeInstance('Tx_DfTabs_DataProvider_TypoScriptDataProvider');
 		} else {
-			throw new Exception('No data provider matched your request!');
+			throw new tx_dftabs_Exception_GenericException('No data provider matched your request!');
 		}
 
 		/** @var $dataProvider Tx_DfTabs_DataProvider_AbstractBaseDataProvider */

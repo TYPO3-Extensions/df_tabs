@@ -65,7 +65,7 @@ class Tx_DfTabs_DataProvider_FactoryDataProviderTest extends Tx_DfTabs_BaseTestC
 	}
 
 	/**
-	 * @expectedException Exception
+	 * @expectedException tx_dftabs_Exception_GenericException
 	 * @test
 	 * @return void
 	 */

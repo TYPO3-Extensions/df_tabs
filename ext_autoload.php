@@ -17,6 +17,8 @@ return array(
 	'tx_dftabs_plugin1' => $extensionPath . 'Classes/Controller/PluginController.php',
 	'tx_dftabs_wizards_contentelementwizard' => $extensionPath . 'Classes/Wizards/ContentElementWizard.php',
 	'tx_dftabs_basetestcase' => $extensionPath . 'Tests/Unit/BaseTestCase.php',
+	'tx_dftabs_exception_genericexception' => $extensionPath . 'Classes/Exception/GenericException.php',
+
 );
 
 ?>

@@ -186,7 +186,9 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 				'<div class="tabContent" id="tabContent1">Bar</div></div>' . chr(10)
 			),
 			'no tab elements' => array(
-				array(), $pluginConfigurationWithMostSubstitutionTerms, ''
+				array(),
+				$pluginConfigurationWithMostSubstitutionTerms,
+				$GLOBALS['LANG']->sL('LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:noContentFound')
 			),
 		);
 	}
