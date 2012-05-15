@@ -184,7 +184,7 @@ class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 			($index === 0 ? ' ' . $this->addPrefix('tabMenuEntrySelected') : '');
 		$id = $this->addPrefix('tabMenuEntry' . $index);
 		$linkId = $this->pluginConfiguration['hashName'] . $index;
-		$hash = $this->contentObject->currentPageUrl(t3lib_div::_GET()) . '#' . $linkId;
+		$hash = '#' . $linkId;
 
 		$typolink = $target = '';
 		if (strpos($menuEntry, '###LINK###') !== FALSE) {
