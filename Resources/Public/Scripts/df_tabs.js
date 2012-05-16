@@ -255,8 +255,8 @@ var TabBar = new Class({
 	 * @return {void}
 	 */
 	initHistory: function() {
-		// configure the History routing mechanism
-		var history = new History.Route({
+			// configure the History routing mechanism
+		(new History.Route({
 			defaults: [],
 			flags: 'i',
 			pattern: '(?:^|' + History.options.separator + ')' + this.options.hashName + '(\\d+)',
@@ -283,7 +283,7 @@ var TabBar = new Class({
 					this.fireEvent('menuEntryClicked', [this, index]);
 				}
 			}.bind(this)
-		});
+		}));
 
 		// initial check if a matching hash was appended to the URL and apply the new state
 		History.trace();

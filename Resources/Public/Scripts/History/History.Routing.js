@@ -30,11 +30,13 @@ History.implement({
 
 	match: function(state, previous, manual) {
 		if (!manual) {
+			//noinspection JSCheckFunctionSignatures
 			this.routes.each(Function.methodize('match', this.hashState));
 		}
 	},
 
 	generate: function() {
+		//noinspection JSCheckFunctionSignatures
 		return this.routes.map(Function.methodize('generate')).clean().join(this.options.separator);
 	},
 

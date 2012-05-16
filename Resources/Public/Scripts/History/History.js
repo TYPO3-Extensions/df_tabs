@@ -43,7 +43,7 @@ History.implement({
 				'$listener': function(state) {
 					state = decodeURIComponent(state);
 					if (this.hashState !== state) {
-						this.setHash(state).changeState(state);
+						this.setHash(state).changeState(state, false);
 					}
 				}.bind(this),
 				'setState': function(state, force) {
@@ -86,7 +86,7 @@ History.implement({
 	trace: function() {
 		var state = this.getHash();
 		if (state !== this.hashState) {
-			this.changeState(state);
+			this.changeState(state, false);
 		}
 	},
 
