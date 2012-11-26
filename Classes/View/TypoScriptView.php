@@ -121,6 +121,7 @@ class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 						classPrefix: "' . $config['classPrefix'] . '",
 						hashName: "' . $config['hashName'] . '",
 						pollingInterval: ' . $config['pollingInterval'] . ',
+						animationSpeed: ' . $config['animationSpeed'] . ',
 						onBeforeInitialize: ' . $config['events.']['onBeforeInitialize'] . ',
 						onAfterInitialize: ' . $config['events.']['onAfterInitialize'] . ',
 						onTabChange: ' . $config['events.']['onTabChange'] . '

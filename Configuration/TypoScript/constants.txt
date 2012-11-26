@@ -12,6 +12,7 @@ plugin.tx_dftabs_plugin1 {
 	classPrefix = tx-dftabs-
 	hashName = tab
 	pollingInterval = 1000
+	animationSpeed = 400
 	menuNodeType = li
 	contentNodeType = div
 	animationCallback =

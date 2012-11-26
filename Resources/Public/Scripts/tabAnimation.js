@@ -13,7 +13,7 @@ var dfTabsSmoothImageTransition = {
 	beforeInitialize: function(tabBar) {
 		tabBar.elementMap.each(function(element) {
 			element.contentItem.set('tween', {
-				duration: 400
+				duration: tabBar.options.animationSpeed
 			});
 
 			if (!element.contentItem.hasClass(tabBar.options.classPrefix + 'tabContentSelected')) {

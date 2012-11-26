@@ -72,6 +72,10 @@ class Tx_DfTabs_Service_ConfigurationService {
 			$configuration['pollingInterval'] = intval($configuration['pollingInterval']);
 		}
 
+		if (isset($configuration['animationSpeed'])) {
+			$configuration['animationSpeed'] = intval($configuration['animationSpeed']);
+		}
+
 		return $configuration;
 	}
 
@@ -136,6 +140,11 @@ class Tx_DfTabs_Service_ConfigurationService {
 		$value = trim($this->controllerContext->pi_getFFvalue($data, 'autoPlayInterval'));
 		if ($value !== '') {
 			$configuration['autoPlayInterval'] = intval($value);
+		}
+
+		$value = trim($this->controllerContext->pi_getFFvalue($data, 'animationSpeed'));
+		if ($value !== '') {
+			$configuration['animationSpeed'] = intval($value);
 		}
 
 		$value = trim($this->controllerContext->pi_getFFvalue($data, 'mode'));
