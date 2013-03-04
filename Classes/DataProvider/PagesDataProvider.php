@@ -46,9 +46,12 @@ class Tx_DfTabs_DataProvider_PagesDataProvider extends Tx_DfTabs_DataProvider_Ab
 	 */
 	public function getContentUids($uid) {
 		$where = 'pid = ' . intval($uid) . $this->contentObject->enableFields('tt_content') .
-			' ' . $this->pluginConfiguration['pages.']['additionalWhere'];
+			' ' . $this->pluginConfiguration['pages.']['additionalWhere'] .
+			' AND sys_language_uid IN (0,-1)';
 
-		$contentElements = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+		/** @var $db t3lib_DB */
+		$db = $GLOBALS['TYPO3_DB'];
+		$contentElements = $db->exec_SELECTgetRows(
 			'uid', 'tt_content', $where, '',
 			$this->pluginConfiguration['pages.']['orderBy'],
 			$this->pluginConfiguration['pages.']['limit'],
