@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *
  *  All rights reserved
  *
@@ -28,9 +28,6 @@ require_once(t3lib_extMgm::extPath('df_tabs') . 'Tests/Unit/BaseTestCase.php');
 
 /**
  * Test case for class Tx_DfTabs_Domain_Model_Tab.
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package df_tabs
  */
 class Tx_DfTabs_Domain_Model_LinkCheckTest extends Tx_DfTabs_BaseTestCase {
 	/**

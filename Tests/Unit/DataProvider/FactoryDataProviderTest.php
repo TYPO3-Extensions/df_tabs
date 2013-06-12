@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *
  *  All rights reserved
  *
@@ -29,9 +29,6 @@ require_once(t3lib_extMgm::extPath('df_tabs') . 'Classes/DataProvider/InterfaceD
 
 /**
  * Test case for class Tx_DfTabs_DataProvider_FactoryDataProvider.
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package df_tabs
  */
 class Tx_DfTabs_DataProvider_FactoryDataProviderTest extends Tx_DfTabs_BaseTestCase {
 	/**
@@ -60,7 +57,9 @@ class Tx_DfTabs_DataProvider_FactoryDataProviderTest extends Tx_DfTabs_BaseTestC
 	 */
 	public function getDataProviderReturnsProviderBasedOnMode($mode, $expectedDataProvider) {
 		$contentObject = new tslib_cObj();
-		$dataProvider = Tx_DfTabs_DataProvider_FactoryDataProvider::getDataProvider($mode, array('mode' => $mode), $contentObject);
+		$dataProvider = Tx_DfTabs_DataProvider_FactoryDataProvider::getDataProvider(
+			$mode, array('mode' => $mode), $contentObject
+		);
 		$this->assertInstanceOf($expectedDataProvider, $dataProvider);
 	}
 

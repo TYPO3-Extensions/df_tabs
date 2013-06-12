@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2010-2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,15 +24,14 @@
 
 /**
  * Plugin for the 'df_tabs' extension
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package	TYPO3
- * @subpackage df_tabs
  */
 class tx_dftabs_plugin1 extends tslib_pibase {
 	public $prefixId = 'tx_dftabs_plugin1';
+
 	public $scriptRelPath = 'Resources/Private/Language/locallang.xlf';
+
 	public $extKey = 'df_tabs';
+
 	public $pi_checkCHash = TRUE;
 
 	/**
@@ -60,10 +59,13 @@ class tx_dftabs_plugin1 extends tslib_pibase {
 	 * @return Tx_DfTabs_View_TypoScriptView
 	 */
 	protected function getRenderer() {
+		/** @var tslib_fe $tsfe */
+		$tsfe = $GLOBALS['TSFE'];
+
 		/** @var $renderer Tx_DfTabs_View_TypoScriptView */
 		$renderer = t3lib_div::makeInstance('Tx_DfTabs_View_TypoScriptView');
 		$renderer->injectPluginConfiguration($this->pluginConfiguration);
-		$renderer->injectPageRenderer($GLOBALS['TSFE']->getPageRenderer());
+		$renderer->injectPageRenderer($tsfe->getPageRenderer());
 		$renderer->injectContentObject($this->cObj);
 
 		return $renderer;

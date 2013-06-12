@@ -1,7 +1,7 @@
 /**
  * Smooth Image Transition effect
  *
- * @author Stefan Galinski <sgalinski@df.eu>
+ * @author Stefan Galinski <stefan.galinski@gmail.com>
  */
 var dfTabsSmoothImageTransition = {
 	/**

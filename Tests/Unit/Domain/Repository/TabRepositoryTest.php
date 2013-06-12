@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *
  *  All rights reserved
  *
@@ -29,9 +29,6 @@ require_once(t3lib_extMgm::extPath('df_tabs') . 'Classes/DataProvider/InterfaceD
 
 /**
  * Test case for class Tx_DfTabs_Domain_Repository_TabRepository.
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package df_tabs
  */
 class Tx_DfTabs_Domain_Repository_TabRepositoryTest extends Tx_DfTabs_BaseTestCase {
 	/**
@@ -43,7 +40,9 @@ class Tx_DfTabs_Domain_Repository_TabRepositoryTest extends Tx_DfTabs_BaseTestCa
 	 * @return void
 	 */
 	public function setUp() {
-		$this->fixture = $this->getAccessibleMock('Tx_DfTabs_Domain_Repository_TabRepository', array('getDataProvider'));
+		$this->fixture = $this->getAccessibleMock(
+			'Tx_DfTabs_Domain_Repository_TabRepository', array('getDataProvider')
+		);
 	}
 
 	/**

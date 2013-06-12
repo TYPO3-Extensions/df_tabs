@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2010-2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,10 +24,6 @@
 
 /**
  * Database Data Provider
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package	TYPO3
- * @subpackage df_tabs
  */
 abstract class Tx_DfTabs_DataProvider_AbstractDataBaseDataProvider extends Tx_DfTabs_DataProvider_AbstractBaseDataProvider {
 	/**
@@ -51,7 +47,9 @@ abstract class Tx_DfTabs_DataProvider_AbstractDataBaseDataProvider extends Tx_Df
 	 * @return array
 	 */
 	protected function getRecordData($uid) {
-		return $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow('*', $this->table, 'uid = ' . intval($uid));
+		/** @var t3lib_db $db */
+		$db = $GLOBALS['TYPO3_DB'];
+		return $db->exec_SELECTgetSingleRow('*', $this->table, 'uid = ' . intval($uid));
 	}
 
 	/**

@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2010-2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,10 +24,6 @@
 
 /**
  * Data Provider for plain typoscript
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package	TYPO3
- * @subpackage df_tabs
  */
 class Tx_DfTabs_DataProvider_TypoScriptDataProvider extends Tx_DfTabs_DataProvider_AbstractBaseDataProvider {
 	/**

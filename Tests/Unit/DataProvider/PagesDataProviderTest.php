@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *
  *  All rights reserved
  *
@@ -29,9 +29,6 @@ require_once(t3lib_extMgm::extPath('df_tabs') . 'Classes/DataProvider/InterfaceD
 
 /**
  * Test case for class Tx_DfTabs_DataProvider_PagesDataProvider.
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package df_tabs
  */
 class Tx_DfTabs_DataProvider_PagesDataProviderTest extends Tx_DfTabs_BaseTestCase {
 	/**
@@ -42,14 +39,19 @@ class Tx_DfTabs_DataProvider_PagesDataProviderTest extends Tx_DfTabs_BaseTestCas
 	/**
 	 * @var t3lib_DB
 	 */
-	protected $backupDatabase = NULL;
+	protected $backupDatabase;
+
+	/**
+	 * @var t3lib_DB | PHPUnit_Framework_MockObject_MockObject
+	 */
+	protected $database;
 
 	/**
 	 * @return void
 	 */
 	public function setUp() {
 		$this->backupDatabase = $GLOBALS['TYPO3_DB'];
-		$GLOBALS['TYPO3_DB'] = $this->getMock('t3lib_DB');
+		$GLOBALS['TYPO3_DB'] = $this->database = $this->getMock('t3lib_DB');
 		$this->fixture = new Tx_DfTabs_DataProvider_PagesDataProvider();
 
 	}
@@ -71,7 +73,8 @@ class Tx_DfTabs_DataProvider_PagesDataProviderTest extends Tx_DfTabs_BaseTestCas
 		$contentObject = $this->getMock('tslib_cObj');
 		$this->fixture->injectContentObject($contentObject);
 
-		$GLOBALS['TYPO3_DB']->expects($this->once())->method('exec_SELECTgetRows')
+		/** @noinspection PhpUndefinedMethodInspection */
+		$this->database->expects($this->once())->method('exec_SELECTgetRows')
 			->will($this->returnValue(array(12 => array(), 14 => array())));
 
 		$this->assertSame(array(12, 14), $this->fixture->getContentUids(2));

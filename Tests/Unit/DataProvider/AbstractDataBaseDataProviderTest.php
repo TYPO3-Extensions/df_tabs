@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *
  *  All rights reserved
  *
@@ -29,9 +29,6 @@ require_once(t3lib_extMgm::extPath('df_tabs') . 'Classes/DataProvider/InterfaceD
 
 /**
  * Test case for class Tx_DfTabs_DataProvider_AbstractDataBaseDataProvider.
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package df_tabs
  */
 class Tx_DfTabs_DataProvider_AbstractDataBaseDataProviderTest extends Tx_DfTabs_BaseTestCase {
 	/**
@@ -45,6 +42,11 @@ class Tx_DfTabs_DataProvider_AbstractDataBaseDataProviderTest extends Tx_DfTabs_
 	protected $backupDatabase = NULL;
 
 	/**
+	 * @var t3lib_DB | PHPUnit_Framework_MockObject_MockObject
+	 */
+	protected $database;
+
+	/**
 	 * @var tslib_cObj
 	 */
 	protected $contentObject = NULL;
@@ -54,9 +56,11 @@ class Tx_DfTabs_DataProvider_AbstractDataBaseDataProviderTest extends Tx_DfTabs_
 	 */
 	public function setUp() {
 		$this->backupDatabase = $GLOBALS['TYPO3_DB'];
-		$GLOBALS['TYPO3_DB'] = $this->getMock('t3lib_DB');
+		$GLOBALS['TYPO3_DB'] = $this->database = $this->getMock('t3lib_DB');
 
-		$this->fixture = $this->getAccessibleMock('Tx_DfTabs_DataProvider_AbstractDataBaseDataProvider', array('dummy'));
+		$this->fixture = $this->getAccessibleMock(
+			'Tx_DfTabs_DataProvider_AbstractDataBaseDataProvider', array('dummy')
+		);
 		$this->contentObject = $this->getMock('tslib_cObj');
 		$this->fixture->injectContentObject($this->contentObject);
 	}
@@ -117,11 +121,12 @@ class Tx_DfTabs_DataProvider_AbstractDataBaseDataProviderTest extends Tx_DfTabs_
 	public function getTitleFetchesTheTitleFromTheDatabase() {
 		/** @noinspection PhpUndefinedMethodInspection */
 		$this->fixture->_set('table', 'pages');
-		
+
 		$pluginConfiguration = array('pages.' => array('titleField' => 'title'));
 		$this->fixture->injectPluginConfiguration($pluginConfiguration);
 
-		$GLOBALS['TYPO3_DB']->expects($this->once())->method('exec_SELECTgetSingleRow')
+		/** @noinspection PhpUndefinedMethodInspection */
+		$this->database->expects($this->once())->method('exec_SELECTgetSingleRow')
 			->with('*', 'pages', 'uid = 1')->will($this->returnValue(array('title' => 'Foo')));
 		$this->assertSame('Foo', $this->fixture->getTitle(1));
 	}
@@ -137,7 +142,8 @@ class Tx_DfTabs_DataProvider_AbstractDataBaseDataProviderTest extends Tx_DfTabs_
 		$pluginConfiguration = array('tt_content.' => array('linkField' => 'header_link'));
 		$this->fixture->injectPluginConfiguration($pluginConfiguration);
 
-		$GLOBALS['TYPO3_DB']->expects($this->once())->method('exec_SELECTgetSingleRow')
+		/** @noinspection PhpUndefinedMethodInspection */
+		$this->database->expects($this->once())->method('exec_SELECTgetSingleRow')
 			->with('*', 'tt_content', 'uid = 1')->will($this->returnValue(array('header_link' => 'Foo')));
 		$this->assertSame('Foo', $this->fixture->getLinkData(1));
 	}
@@ -153,7 +159,8 @@ class Tx_DfTabs_DataProvider_AbstractDataBaseDataProviderTest extends Tx_DfTabs_
 		$pluginConfiguration = array('tt_content.' => array('ajaxFallbackTextField' => 'altText'));
 		$this->fixture->injectPluginConfiguration($pluginConfiguration);
 
-		$GLOBALS['TYPO3_DB']->expects($this->once())->method('exec_SELECTgetSingleRow')
+		/** @noinspection PhpUndefinedMethodInspection */
+		$this->database->expects($this->once())->method('exec_SELECTgetSingleRow')
 			->with('*', 'tt_content', 'uid = 1')->will($this->returnValue(array('altText' => 'Foo')));
 		$this->assertSame('Foo', $this->fixture->getAjaxFallbackText(1));
 	}
@@ -169,7 +176,8 @@ class Tx_DfTabs_DataProvider_AbstractDataBaseDataProviderTest extends Tx_DfTabs_
 		$pluginConfiguration = array('pages.' => array('titleField' => 'title', 'linkField' => 'header_link'));
 		$this->fixture->injectPluginConfiguration($pluginConfiguration);
 
-		$GLOBALS['TYPO3_DB']->expects($this->once())->method('exec_SELECTgetSingleRow')
+		/** @noinspection PhpUndefinedMethodInspection */
+		$this->database->expects($this->once())->method('exec_SELECTgetSingleRow')
 			->with('*', 'pages', 'uid = 1')->will($this->returnValue(array('title' => 'Foo', 'header_link' => 'Bar')));
 
 		$this->assertSame('Foo', $this->fixture->getTitle(1));

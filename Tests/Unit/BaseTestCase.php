@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *
  *  All rights reserved
  *
@@ -26,9 +26,6 @@
 
 /**
  * Base Test Case
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package df_tabs
  */
 abstract class Tx_DfTabs_BaseTestCase extends tx_phpunit_testcase {
 	/**
@@ -47,8 +44,14 @@ abstract class Tx_DfTabs_BaseTestCase extends tx_phpunit_testcase {
 	 * @author Robert Lemke <robert@typo3.org>
 	 * @api
 	 */
-	protected function getAccessibleMock($originalClassName, $methods = array(), array $arguments = array(), $mockClassName = '', $callOriginalConstructor = TRUE, $callOriginalClone = TRUE, $callAutoload = TRUE) {
-		return $this->getMock($this->buildAccessibleProxy($originalClassName), $methods, $arguments, $mockClassName, $callOriginalConstructor, $callOriginalClone, $callAutoload);
+	protected function getAccessibleMock(
+		$originalClassName, $methods = array(), array $arguments = array(), $mockClassName = '',
+		$callOriginalConstructor = TRUE, $callOriginalClone = TRUE, $callAutoload = TRUE
+	) {
+		return $this->getMock(
+			$this->buildAccessibleProxy($originalClassName), $methods, $arguments, $mockClassName,
+			$callOriginalConstructor, $callOriginalClone, $callAutoload
+		);
 	}
 
 	/**

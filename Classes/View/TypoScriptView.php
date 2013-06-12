@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -25,10 +25,6 @@
 
 /**
  * Renders the content
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package	TYPO3
- * @subpackage df_tabs
  */
 class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 	/**
@@ -42,7 +38,7 @@ class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 	 * @var t3lib_PageRenderer
 	 */
 	protected $pageRenderer = NULL;
-	
+
 	/**
 	 * @var tslib_cObj
 	 */
@@ -64,24 +60,24 @@ class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 	public function injectPluginConfiguration(array $configuration) {
 		$this->pluginConfiguration = $configuration;
 	}
-	
+
 	/**
 	 * Injects the page renderer
-	 * 
+	 *
 	 * @param t3lib_PageRenderer $pageRenderer
 	 * @return void
 	 */
-	public function injectPageRenderer(t3lib_PageRenderer $pageRenderer) {
+	public function injectPageRenderer($pageRenderer) {
 		$this->pageRenderer = $pageRenderer;
 	}
-	
+
 	/**
 	 * Injects the content object
-	 * 
+	 *
 	 * @param tslib_cObj $contentObject
 	 * @return void
 	 */
-	public function injectContentObject(tslib_cObj $contentObject) {
+	public function injectContentObject($contentObject) {
 		$this->contentObject = $contentObject;
 	}
 
@@ -97,7 +93,7 @@ class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 			return;
 		}
 
-		$config = &$this->pluginConfiguration;
+		$config = & $this->pluginConfiguration;
 		$animationCallback = '';
 		if ($config['animationCallback'] !== '') {
 			$animationCallback = ',animationCallback: ' . $config['animationCallback'];
@@ -147,7 +143,9 @@ class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 	 */
 	public function renderTabs($tabElements) {
 		if (!count($tabElements)) {
-			return $GLOBALS['LANG']->sL('LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:noContentFound');
+			/** @var language $language */
+			$language = $GLOBALS['LANG'];
+			return $language->sL('LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:noContentFound');
 		}
 
 		$tabContents = $tabMenuEntries = '';
@@ -189,15 +187,19 @@ class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 
 		$typolink = $target = '';
 		if (strpos($menuEntry, '###LINK###') !== FALSE) {
-			$typolink = $this->contentObject->typoLink('', array(
-				'parameter' => $tabElement->getLink(),
-				'returnLast' => 'url'
-			));
+			$typolink = $this->contentObject->typoLink(
+				'', array(
+					'parameter' => $tabElement->getLink(),
+					'returnLast' => 'url'
+				)
+			);
 
-			$target = $this->contentObject->typoLink('', array(
-				'parameter' => $tabElement->getLink(),
-				'returnLast' => 'target'
-			));
+			$target = $this->contentObject->typoLink(
+				'', array(
+					'parameter' => $tabElement->getLink(),
+					'returnLast' => 'target'
+				)
+			);
 			$target = ($target === '' ? '_self' : $target);
 		}
 

@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 domainfactory GmbH (Stefan Galinski <sgalinski@df.eu>)
+ *  (c) domainfactory GmbH (Stefan Galinski <stefan.galinski@gmail.com>)
  *
  *  All rights reserved
  *
@@ -28,9 +28,6 @@ require_once(t3lib_extMgm::extPath('df_tabs') . 'Tests/Unit/BaseTestCase.php');
 
 /**
  * Test case for class Tx_DfTabs_View_TypoScriptView.
- *
- * @author Stefan Galinski <sgalinski@df.eu>
- * @package df_tabs
  */
 class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 	/**
@@ -107,7 +104,7 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 		$this->fixture->injectPageRenderer($pageRenderer);
 
 		$pageRenderer->expects($this->once())->method('addJsFooterInlineCode');
-		$this->fixture->addInlineJavaScriptCode(array(1,2,3), 'combined');
+		$this->fixture->addInlineJavaScriptCode(array(1, 2, 3), 'combined');
 	}
 
 	/**
@@ -120,7 +117,7 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 		$this->fixture->injectPageRenderer($pageRenderer);
 
 		$pageRenderer->expects($this->never())->method('addJsFooterInlineCode');
-		$this->fixture->addInlineJavaScriptCode(array(1,2,3), 'combined');
+		$this->fixture->addInlineJavaScriptCode(array(1, 2, 3), 'combined');
 	}
 
 	/**
@@ -159,40 +156,57 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 		$pluginConfigurationWithClassPrefix = $pluginConfigurationWithMostSubstitutionTerms;
 		$pluginConfigurationWithClassPrefix['classPrefix'] = 'prefix-';
 
+		/** @var language $language */
+		$language = $GLOBALS['LANG'];
+
 		return array(
 			'basic element' => array(
 				array($tabElement), $pluginConfigurationWithMostSubstitutionTerms,
-				'<ul class="tabMenu" id="tabMenu-1"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li></ul>' . chr(10) .
+				'<ul class="tabMenu" id="tabMenu-1"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li></ul>' . chr(
+					10
+				) .
 				'<div class="tabContents" id="tabContents-1"><h4 class="tabTitle">Foo</h4>' . chr(10) .
 				'<div class="tabContent tabContentSelected" id="tabContent0">Bar</div></div>' . chr(10)
 			),
 			'basic element with linked tab menu' => array(
 				array($tabElement), $pluginConfigurationWithLinkedTabMenuEntry,
-				'<ul class="tabMenu" id="tabMenu-1"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="http://www.google.de" target="http://www.google.de" id="0">Foo</a></li></ul>' . chr(10) .
+				'<ul class="tabMenu" id="tabMenu-1"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="http://www.google.de" target="http://www.google.de" id="0">Foo</a></li></ul>' . chr(
+					10
+				) .
 				'<div class="tabContents" id="tabContents-1"><h4 class="tabTitle">Foo</h4>' . chr(10) .
 				'<div class="tabContent tabContentSelected" id="tabContent0">Bar</div></div>' . chr(10)
 			),
 			'basic element with class prefix' => array(
 				array($tabElement), $pluginConfigurationWithClassPrefix,
-				'<ul class="prefix-tabMenu" id="prefix-tabMenu-1"><li id="prefix-tabMenuEntry0" class="prefix-tabMenuEntry prefix-tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li></ul>' . chr(10) .
-				'<div class="prefix-tabContents" id="prefix-tabContents-1"><h4 class="prefix-tabTitle">Foo</h4>' . chr(10) .
-				'<div class="prefix-tabContent prefix-tabContentSelected" id="prefix-tabContent0">Bar</div></div>' . chr(10)
+				'<ul class="prefix-tabMenu" id="prefix-tabMenu-1"><li id="prefix-tabMenuEntry0" class="prefix-tabMenuEntry prefix-tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li></ul>' . chr(
+					10
+				) .
+				'<div class="prefix-tabContents" id="prefix-tabContents-1"><h4 class="prefix-tabTitle">Foo</h4>' . chr(
+					10
+				) .
+				'<div class="prefix-tabContent prefix-tabContentSelected" id="prefix-tabContent0">Bar</div></div>' . chr(
+					10
+				)
 			),
 			'basic element * 2' => array(
 				array($tabElement, $tabElement), $pluginConfigurationWithMostSubstitutionTerms,
-				'<ul class="tabMenu" id="tabMenu-1"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li><li id="tabMenuEntry1" class="tabMenuEntry"><a href="#1" id="1">Foo</a></li></ul>' . chr(10) .
+				'<ul class="tabMenu" id="tabMenu-1"><li id="tabMenuEntry0" class="tabMenuEntry tabMenuEntrySelected"><a href="#0" id="0">Foo</a></li><li id="tabMenuEntry1" class="tabMenuEntry"><a href="#1" id="1">Foo</a></li></ul>' . chr(
+					10
+				) .
 				'<div class="tabContents" id="tabContents-1"><h4 class="tabTitle">Foo</h4>' . chr(10) .
-				'<div class="tabContent tabContentSelected" id="tabContent0">Bar</div><h4 class="tabTitle">Foo</h4>' . chr(10) .
+				'<div class="tabContent tabContentSelected" id="tabContent0">Bar</div><h4 class="tabTitle">Foo</h4>' . chr(
+					10
+				) .
 				'<div class="tabContent" id="tabContent1">Bar</div></div>' . chr(10)
 			),
 			'no tab elements' => array(
 				array(),
 				$pluginConfigurationWithMostSubstitutionTerms,
-				$GLOBALS['LANG']->sL('LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:noContentFound')
+				$language->sL('LLL:EXT:df_tabs/Resources/Private/Language/locallang.xlf:noContentFound')
 			),
 		);
 	}
-	
+
 	/**
 	 * @dataProvider renderTabsReturnsPluginContentWithTabElementDataProvider
 	 * @test
@@ -201,7 +215,9 @@ class Tx_DfTabs_View_TypoScriptViewTest extends Tx_DfTabs_BaseTestCase {
 	 * @param string $expectedContent
 	 * @return void
 	 */
-	public function renderTabsReturnsPluginContentWithTabElement(array $tabElements, array $pluginConfiguration, $expectedContent) {
+	public function renderTabsReturnsPluginContentWithTabElement(
+		array $tabElements, array $pluginConfiguration, $expectedContent
+	) {
 		/** @noinspection PhpUndefinedMethodInspection */
 		$this->contentObject->expects($this->any())->method('typoLink')
 			->will($this->returnValue('http://www.google.de'));
