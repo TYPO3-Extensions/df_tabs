@@ -12,9 +12,6 @@ page.includeJS {
 	dftabs = {$plugin.tx_dftabs_plugin1.js.app}
 	dftabs.if.isFalse.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
 
-	history_jQuery = {$plugin.tx_dftabs_plugin1.js.jqueryHistory}
-	history_jQuery.if.isTrue.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
-
 	dftabs_jQuery = {$plugin.tx_dftabs_plugin1.js.jqueryApp}
 	dftabs_jQuery.if.isTrue.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
 }

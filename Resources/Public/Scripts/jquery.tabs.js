@@ -110,7 +110,7 @@ TabBar.prototype = {
 		this.trigger('beforeInitialize', this);
 
 		this.previousTab = this.options.startIndex;
-		this.parseContentLinks().addEvents().initAutoPlay().initHistory();
+		this.parseContentLinks().addEvents().initAutoPlay().addLocationHashPolling();
 
 		this.trigger('afterInitialize', this);
 	},
@@ -238,48 +238,40 @@ TabBar.prototype = {
 	},
 
 	/**
-	 * Initializes the History manager that manages an History to rebuild the back button
-	 * mechanism.
+	 * Adds an URL hash evaluation with a polling interval of 1000ms to grant the possibility to
+	 * manually open content elements by changing the location hash inside the URL (e.g. acc123).
 	 *
 	 * @return {void}
 	 */
-	initHistory: function() {
-		// timeout it required to prevent an event call on page load in Google Chrome
-		setTimeout(function() {
-			$(window).on('popstate', function() {
-				var hash = window.History.getHash(), stateIndex = '';
-				if (hash) {
-					var matchExpression = new RegExp('(?:^|;)' + this.options.hashName + '(\\d+)', 'i');
-					stateIndex = matchExpression.exec(hash)[1];
-				}
-				stateIndex = parseInt(stateIndex, 10);
+	addLocationHashPolling: function() {
+		setTimeout(this.hashHandler.bind(this), 1);
+		setInterval(this.hashHandler.bind(this), 100);
+	},
 
-				if (isNaN(stateIndex) && this.previousTab !== this.options.startIndex) {
-					this.display(this.options.startIndex, false);
-				}
-			}.bind(this));
-		}.bind(this), 1);
+	/**
+	 * Location Hash Handler
+	 *
+	 * @return {void}
+	 */
+	hashHandler: function() {
+		if (this.locationHash === window.location.hash) {
+			return;
+		}
 
-		$(window).on('anchorchange', function() {
-			var hash = window.History.getHash();
-			if (hash === '') {
-				return;
+		var index = -1;
+		this.locationHash = window.location.hash;
+		if (this.locationHash !== '') {
+			var matchExpression = new RegExp(this.options.hashName + '(\\d+)', 'i');
+			var matchResult = matchExpression.exec(this.locationHash);
+			index = parseInt(matchResult ? matchResult[1] : '', 10);
+			if (index >= 0 && index < this.elementMap.length) {
+				this.display(index, false);
 			}
-
-			var matchExpression = new RegExp('(?:^|;)' + this.options.hashName + '(\\d+)', 'i');
-			var stateIndex = parseInt(matchExpression.exec(hash)[1], 10);
-			if (this.stateChangedByMenuClickToEntry === stateIndex) {
-				return;
+		} else {
+			if (this.previousTab !== this.options.startIndex) {
+				this.display(this.options.startIndex, false);
 			}
-			this.stateChangedByMenuClickToEntry = null;
-
-			if (stateIndex >= 0 && stateIndex < this.elementMap.length) {
-				this.display(stateIndex, false);
-			}
-		}.bind(this));
-
-		// fire the onHistoryInitialized event
-		this.trigger('historyInitialized', this);
+		}
 	},
 
 	/**
