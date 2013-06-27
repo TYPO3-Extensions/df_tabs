@@ -1,11 +1,12 @@
 /**
- * A tab-bar widget with very basic functionality
+ * Initializes the tab widget
  *
- * @author Stefan Galinski <stefan.galinski@gmail.com>
+ * @param {string} menuEntries
+ * @param {string} contentEntries
+ * @param {object} options
+ * @return {void}
  */
-var TabBar = new Class({
-	Implements: [Options, Events],
-
+var TabBar = function(menuEntries, contentEntries, options) {
 	/**
 	 * Available options
 	 *
@@ -29,7 +30,7 @@ var TabBar = new Class({
 	 *
 	 * @cfg {Object}
 	 */
-	options: {
+	this.options = {
 		startIndex: 0,
 		enableAjax: false,
 		ajaxPageId: 0,
@@ -46,7 +47,8 @@ var TabBar = new Class({
 		onBeforeInitialize: null,
 		onAfterInitialize: null,
 		onTabChange: null
-	},
+	};
+	$.extend(this.options, options);
 
 	/**
 	 * Tab Entry Array with Fields of Type "Object"
@@ -57,65 +59,60 @@ var TabBar = new Class({
 	 *
 	 * @type {Array}
 	 */
-	elementMap: [],
+	this.elementMap = [];
 
 	/**
 	 * The Active Tab
 	 *
 	 * @type {int}
 	 */
-	previousTab: -1,
+	this.previousTab = this.options.startIndex;
 
 	/**
 	 * The AutoPlay Instance
 	 *
 	 * @type {int}
 	 */
-	autoPlay: null,
+	this.autoPlay = 0;
 
 	/**
 	 * Timed Display Method
 	 *
 	 * @type {int}
 	 */
-	timedDisplayFunction: null,
+	this.timedDisplayFunction = 0;
 
-	/**
-	 * Initializes the tab widget
-	 *
-	 * @param {string} menuEntries
-	 * @param {string} contentEntries
-	 * @param {object} options
-	 * @return {void}
-	 */
-	initialize: function(menuEntries, contentEntries, options) {
-		this.setOptions(options);
+	for (var i = 0; i < menuEntries.length; ++i) {
+		this.elementMap[i] = {};
+		this.elementMap[i].menuItem = $(menuEntries[i]);
+		this.elementMap[i].contentItem = $(contentEntries[i]);
+	}
 
-		for (var i = 0; i < menuEntries.length; ++i) {
-			this.elementMap[i] = {};
-			this.elementMap[i].menuItem = menuEntries[i];
-			this.elementMap[i].contentItem = contentEntries[i];
-		}
+	if (this.options.enableAjax) {
+		this.loadAjaxContents();
+	} else {
+		this.finalizeInitialisation();
+	}
+};
 
-		if (this.options.enableAjax) {
-			this.loadAjaxContents();
-		} else {
-			this.finalizeInitialisation();
-		}
-	},
-
+/**
+ * A tab-bar widget with very basic functionality
+ *
+ * @author Stefan Galinski <stefan.galinski@gmail.com>
+ */
+TabBar.prototype = {
 	/**
 	 * Finalizes the initialisation for e.g. after the ajax loading of the contents
 	 *
 	 * @return {void}
 	 */
 	finalizeInitialisation: function() {
-		this.fireEvent('onBeforeInitialize', this);
+		this.trigger('beforeInitialize', this);
 
 		this.previousTab = this.options.startIndex;
 		this.parseContentLinks().addEvents().initAutoPlay().initHistory();
 
-		this.fireEvent('onAfterInitialize', this);
+		this.trigger('afterInitialize', this);
 	},
 
 	/**
@@ -125,26 +122,23 @@ var TabBar = new Class({
 	 * @return {void}
 	 */
 	loadAjaxContents: function() {
-		(new Request({
-			method: 'get',
+		$.ajax({
+			type: 'get',
 			url: 'index.php?eID=dftabs',
-			onComplete: function(response) {
-				var elements = new Element('div', {	html: response }).getChildren();
-				Object.each(elements, function(response, index) {
-					var element = $(this.options.classPrefix + 'tabContent' + (parseInt(index) + 1));
-					if (element) {
-						element.set('html', '');
-						element.grab(response);
+			data: 'df_tabs[id]=' + this.options.ajaxPageId +
+				'&df_tabs[records]=' + this.options.ajaxRecords +
+				'&df_tabs[mode]=' + this.options.ajaxPluginMode,
+			success: function(response) {
+				$.each($(response), function(index, element) {
+					var containerElement = $('#' + this.options.classPrefix + 'tabContent' + (parseInt(index, 10) + 1));
+					if (containerElement.length) {
+						containerElement.empty().append($(element));
 					}
 				}.bind(this));
 
 				this.finalizeInitialisation();
 			}.bind(this)
-		})).send(
-			'df_tabs[id]=' + this.options.ajaxPageId +
-			'&df_tabs[records]=' + this.options.ajaxRecords +
-			'&df_tabs[mode]=' + this.options.ajaxPluginMode
-		);
+		});
 	},
 
 	/**
@@ -154,13 +148,13 @@ var TabBar = new Class({
 	 * @return {TabBar}
 	 */
 	parseContentLinks: function() {
-		this.elementMap.each(function(element) {
-			var links = element.contentItem.getElements('a');
-			links.each(function(link) {
+		$.each(this.elementMap, function(index, element) {
+			var links = element.contentItem.find('a');
+			links.each(function(index, link) {
 				var parts = link.href.split('#');
 				if (parts[1] && parts[0] === location.href.split('#')[0]) {
-					var index = parts[1].substr(this.options.hashName.length);
-					link.addEvent('click', this.scrollToTab.pass(index, this));
+					var hashIndex = parts[1].substr(this.options.hashName.length);
+					$(link).click(this.scrollToTab.bind(this, hashIndex));
 				}
 			}.bind(this));
 		}.bind(this));
@@ -175,12 +169,7 @@ var TabBar = new Class({
 	 * @return {void}
 	 */
 	scrollToTab: function(tabIndex) {
-		(new Fx.Scroll(window, {
-			offset: {
-				x: 0,
-				y: this.elementMap[tabIndex].menuItem.getCoordinates().top
-			}
-		})).toTop();
+		$(window).scrollTop(this.elementMap[tabIndex].menuItem.offset().y);
 	},
 
 	/**
@@ -189,23 +178,21 @@ var TabBar = new Class({
 	 * @return {TabBar}
 	 */
 	addEvents: function() {
-		this.elementMap.each(function(element, index) {
+		$.each(this.elementMap, function(index, element) {
 			if (this.options.enableMouseOver) {
-				element.menuItem.addEvent('mouseenter', this.timedDisplay.pass([index], this));
-				element.contentItem.addEvent('mouseenter', this.clearTimedDisplay.bind(this));
+				element.menuItem.mouseenter(this.timedDisplay.bind(this, index));
+				element.contentItem.mouseenter(this.clearTimedDisplay.bind(this));
 			} else {
-				element.menuItem.addEvent('click', this.display.pass([index], this));
+				element.menuItem.click(this.display.bind(this, index));
 			}
 
 			if (this.options.enableAutoPlay) {
 				if (this.options.enableMouseOver) {
-					element.menuItem.addEvents({
-						'mouseenter': this.stopAutoPlay.bind(this),
-						'mouseleave': this.startAutoPlay.bind(this),
-						'click': this.startAutoPlay.bind(this)
-					});
+					element.menuItem.mouseenter(this.stopAutoPlay.bind(this));
+					element.menuItem.mouseleave(this.startAutoPlay.bind(this));
+					element.menuItem.click(this.startAutoPlay.bind(this));
 				} else {
-					element.menuItem.addEvent('click', this.stopAutoPlay.bind(this));
+					element.menuItem.click(this.stopAutoPlay.bind(this));
 				}
 			}
 		}.bind(this));
@@ -216,7 +203,7 @@ var TabBar = new Class({
 	/**
 	 * Initializes the autoplay mechanism based on the visibility state
 	 *
-	 * Note: If the visibility state isn't available, the autplay functionality is
+	 * Note: If the visibility state isn't available, the autoplay functionality is
 	 * started directly.
 	 *
 	 * @return {TabBar}
@@ -239,7 +226,9 @@ var TabBar = new Class({
 		}
 
 		if (visibilityChange) {
-			document.addEventListener(visibilityChange, this.toggleAutoplayBasedOnVisibility.bind(this, [hidden]), false);
+			document.addEventListener(
+				visibilityChange, this.toggleAutoplayBasedOnVisibility.bind(this, [hidden]), false
+			);
 			this.toggleAutoplayBasedOnVisibility(hidden);
 		} else {
 			this.startAutoPlay();
@@ -255,45 +244,42 @@ var TabBar = new Class({
 	 * @return {void}
 	 */
 	initHistory: function() {
-			// configure the History routing mechanism
-		(new History.Route({
-			defaults: [],
-			flags: 'i',
-			pattern: '(?:^|' + History.options.separator + ')' + this.options.hashName + '(\\d+)',
-
-			// called if a new History entry is created to generate the History key
-			generate: function(values) {
-				var index = parseInt(values[0], 10);
-				return this.options.hashName + (index ? index : '');
-			}.bind(this),
-
-			// called if match of the History key occurred while the hash of the url changed
-			onMatch: function(values) {
-				if (!values.length && window.location.hash !== '') {
-					return;
+		// timeout it required to prevent an event call on page load in Google Chrome
+		setTimeout(function() {
+			$(window).on('popstate', function() {
+				var hash = window.History.getHash(), stateIndex = '';
+				if (hash) {
+					var matchExpression = new RegExp('(?:^|;)' + this.options.hashName + '(\\d+)', 'i');
+					stateIndex = matchExpression.exec(hash)[1];
 				}
+				stateIndex = parseInt(stateIndex, 10);
 
-				var index = parseInt(values[0], 10);
-				if (isNaN(index) && this.previousTab !== this.options.startIndex) {
+				if (isNaN(stateIndex) && this.previousTab !== this.options.startIndex) {
 					this.display(this.options.startIndex, false);
-					this.fireEvent('historyBackToStartPage', this);
-
-				} else if (index >= 0 && index < this.elementMap.length) {
-					this.display(index, false);
-					this.fireEvent('menuEntryClicked', [this, index]);
 				}
-			}.bind(this)
-		}));
+			}.bind(this));
+		}.bind(this), 1);
 
-		// initial check if a matching hash was appended to the URL and apply the new state
-		History.trace();
+		$(window).on('anchorchange', function() {
+			var hash = window.History.getHash();
+			if (hash === '') {
+				return;
+			}
 
-		// add listening mechanism to change the contents if the anchor was manually changed
-		// or the back button was pressed
-		History.start();
+			var matchExpression = new RegExp('(?:^|;)' + this.options.hashName + '(\\d+)', 'i');
+			var stateIndex = parseInt(matchExpression.exec(hash)[1], 10);
+			if (this.stateChangedByMenuClickToEntry === stateIndex) {
+				return;
+			}
+			this.stateChangedByMenuClickToEntry = null;
+
+			if (stateIndex >= 0 && stateIndex < this.elementMap.length) {
+				this.display(stateIndex, false);
+			}
+		}.bind(this));
 
 		// fire the onHistoryInitialized event
-		this.fireEvent('historyInitialized', this);
+		this.trigger('historyInitialized', this);
 	},
 
 	/**
@@ -306,7 +292,7 @@ var TabBar = new Class({
 	 */
 	timedDisplay: function(nextTabIndex) {
 		this.clearTimedDisplay();
-		this.timedDisplayFunction = this.display.delay(250, this, [nextTabIndex]);
+		this.timedDisplayFunction = setTimeout(this.display.bind(this, nextTabIndex), 250);
 
 		return this;
 	},
@@ -334,20 +320,19 @@ var TabBar = new Class({
 			triggeredByAutoPlay = false;
 		}
 
-		nextTabIndex = parseInt(nextTabIndex);
-		if (isNaN(nextTabIndex) || this.previousTab === nextTabIndex ||
-			nextTabIndex < 0 || nextTabIndex >= this.elementMap.length
-		) {
+		nextTabIndex = parseInt(nextTabIndex, 10);
+		var tabIndexInRange = nextTabIndex >= 0 && nextTabIndex < this.elementMap.length;
+		if (isNaN(nextTabIndex) || this.previousTab === nextTabIndex || !tabIndexInRange) {
 			return this;
 		}
 
 		if (this.options.animationCallback) {
-			this.options.animationCallback.pass([nextTabIndex, triggeredByAutoPlay], this)();
+			this.options.animationCallback.call(this, nextTabIndex, triggeredByAutoPlay);
 		} else {
 			this.animate(nextTabIndex);
 		}
 
-		this.fireEvent('onTabChange', [this, this.previousTab, nextTabIndex]);
+		this.trigger('tabChange', this, this.previousTab, nextTabIndex);
 
 		return this;
 	},
@@ -391,13 +376,7 @@ var TabBar = new Class({
 	toggleMenuEntrySelectionClasses: function(nextTabIndex) {
 		var selectedClass = this.options.classPrefix + 'tabMenuEntrySelected';
 		this.elementMap[nextTabIndex].menuItem.addClass(selectedClass);
-
-		if (Browser.ie && Browser.version < 10) {
-			this.elementMap[this.previousTab].menuItem.removeClass(selectedClass).
-				setStyle('visibility', 'hidden').setStyle('visibility', 'visible');
-		} else {
-			this.elementMap[this.previousTab].menuItem.removeClass(selectedClass);
-		}
+		this.elementMap[this.previousTab].menuItem.removeClass(selectedClass);
 
 		return this;
 	},
@@ -438,7 +417,7 @@ var TabBar = new Class({
 	 */
 	startAutoPlay: function() {
 		if (this.options.enableAutoPlay && !this.autoPlay) {
-			this.autoPlay = this.autoPlayMechanism.periodical(this.options.autoPlayInterval, this);
+			this.autoPlay = setInterval(this.autoPlayMechanism.bind(this), this.options.autoPlayInterval);
 		}
 
 		return this;
@@ -451,8 +430,22 @@ var TabBar = new Class({
 	 */
 	stopAutoPlay: function() {
 		clearInterval(this.autoPlay);
-		this.autoPlay = null;
+		this.autoPlay = 0;
 
 		return this;
+	},
+
+	/**
+	 * Triggers an event
+	 *
+	 * @return {void}
+	 */
+	trigger: function(event) {
+		var onFunction = 'on' + event.charAt(0).toUpperCase() + event.slice(1);
+		if (typeof this.options[onFunction] === 'function') {
+			var args = Array.prototype.slice.call(arguments);
+			args.shift();
+			this.options[onFunction].call(this, args[0], args[1], args[2], args[3]);
+		}
 	}
-});
+};

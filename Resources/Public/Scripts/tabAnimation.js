@@ -11,15 +11,23 @@ var dfTabsSmoothImageTransition = {
 	 * @return {void}
 	 */
 	beforeInitialize: function(tabBar) {
-		tabBar.elementMap.each(function(element) {
-			element.contentItem.set('tween', {
-				duration: tabBar.options.animationSpeed
+		if (jQuery) {
+			$.each(tabBar.elementMap, function(index, element) {
+				if (!element.contentItem.hasClass(tabBar.options.classPrefix + 'tabContentSelected')) {
+					element.contentItem.css('display', 'none');
+				}
 			});
+		} else {
+			tabBar.elementMap.each(function(element) {
+				element.contentItem.set('tween', {
+					duration: tabBar.options.animationSpeed
+				});
 
-			if (!element.contentItem.hasClass(tabBar.options.classPrefix + 'tabContentSelected')) {
-				element.contentItem.fade('hide');
-			}
-		});
+				if (!element.contentItem.hasClass(tabBar.options.classPrefix + 'tabContentSelected')) {
+					element.contentItem.fade('hide');
+				}
+			});
+		}
 	},
 
 	/**
@@ -33,13 +41,25 @@ var dfTabsSmoothImageTransition = {
 			return;
 		}
 
-		this.elementMap[this.previousTab].contentItem.fade('out');
-		this.elementMap[nextTabIndex].contentItem.fade('in');
+		var selectedClass = '';
+		if (jQuery) {
+			this.elementMap[this.previousTab].contentItem.fadeOut(this.options.animationSpeed);
+			this.elementMap[nextTabIndex].contentItem.fadeIn(this.options.animationSpeed);
 
-		var selectedClass = this.options.classPrefix + 'tabMenuEntrySelected';
-		this.elementMap.each(function(element) {
-			element.menuItem.removeClass(selectedClass);
-		});
+			selectedClass = this.options.classPrefix + 'tabMenuEntrySelected';
+			$.each(this.elementMap, function(index, element) {
+				element.menuItem.removeClass(selectedClass);
+			});
+		} else {
+			this.elementMap[this.previousTab].contentItem.fade('out');
+			this.elementMap[nextTabIndex].contentItem.fade('in');
+
+			selectedClass = this.options.classPrefix + 'tabMenuEntrySelected';
+			this.elementMap.each(function(element) {
+				element.menuItem.removeClass(selectedClass);
+			});
+		}
+
 		this.elementMap[nextTabIndex].menuItem.addClass(selectedClass);
 		this.previousTab = nextTabIndex;
 	}

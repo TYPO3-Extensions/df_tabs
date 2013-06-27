@@ -4,8 +4,19 @@ page.includeCSS {
 
 page.includeJS {
 	history = {$plugin.tx_dftabs_plugin1.js.history}
+	history.if.isFalse.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
+
 	historyRouting = {$plugin.tx_dftabs_plugin1.js.historyRouting}
+	historyRouting.if.isFalse.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
+
 	dftabs = {$plugin.tx_dftabs_plugin1.js.app}
+	dftabs.if.isFalse.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
+
+	history_jQuery = {$plugin.tx_dftabs_plugin1.js.jqueryHistory}
+	history_jQuery.if.isTrue.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
+
+	dftabs_jQuery = {$plugin.tx_dftabs_plugin1.js.jqueryApp}
+	dftabs_jQuery.if.isTrue.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
 }
 
 plugin.tx_dftabs_plugin1 {
@@ -25,7 +36,7 @@ plugin.tx_dftabs_plugin1 {
 	enableAutoPlay = {$plugin.tx_dftabs_plugin1.enableAutoPlay}
 	autoPlayInterval = {$plugin.tx_dftabs_plugin1.autoPlayInterval}
 	enableMouseOver = {$plugin.tx_dftabs_plugin1.enableMouseOver}
-	mode = {$plugin.tx_dftabs_plugin1.mode}
+	mode = {$plugin.tx_dftabs_plugin1.mode}ext_conf_template.txt
 	titles = {$plugin.tx_dftabs_plugin1.titles}
 	pages = {$plugin.tx_dftabs_plugin1.pages}
 	tt_content = {$plugin.tx_dftabs_plugin1.tt_content}

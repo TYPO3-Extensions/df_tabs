@@ -100,13 +100,29 @@ class Tx_DfTabs_View_TypoScriptView implements t3lib_Singleton {
 		}
 
 		array_shift($records);
-		$inlineJavaScript = '
-			document.documentElement.className = "' . $this->addPrefix('plugin1-hasJS') . ' "
-				+ document.documentElement.className;
-			window.addEvent("domready", function() {
-				this.TabBar' . $this->counter . ' = new TabBar(
-					$$("#' . $this->addPrefix('tabMenu-' . $this->counter) . ' > ' . $config['menuNodeType'] . '"),
-					$$("#' . $this->addPrefix('tabContents-' . $this->counter) . ' > ' . $config['contentNodeType'] . '"), {
+		$menuId = $this->addPrefix('tabMenu-' . $this->counter);
+		$contentId = $this->addPrefix('tabContents-' . $this->counter);
+		if ($this->pluginConfiguration['useJQuery']) {
+			$inlineJavaScript = '
+				document.documentElement.className = "' . $this->addPrefix('plugin1-hasJS') . ' "
+					+ document.documentElement.className;
+				$(document).ready(function() {
+					window.TabBar' . $this->counter . ' = new TabBar(
+						$("#' . $menuId . ' > ' . $config['menuNodeType'] . '"),
+						$("#' . $contentId . ' > ' . $config['contentNodeType'] . '"), {
+			';
+		} else {
+			$inlineJavaScript = '
+				document.documentElement.className = "' . $this->addPrefix('plugin1-hasJS') . ' "
+					+ document.documentElement.className;
+				window.addEvent("domready", function() {
+					this.TabBar' . $this->counter . ' = new TabBar(
+						$("#' . $menuId . ' > ' . $config['menuNodeType'] . '"),
+						$("#' . $contentId . ' > ' . $config['contentNodeType'] . '"), {
+			';
+		}
+
+		$inlineJavaScript .= '
 						autoPlayInterval: ' . $config['autoPlayInterval'] . ',
 						enableAjax: ' . ($config['ajax'] ? 'true' : 'false') . ',
 						ajaxPageId: ' . intval($GLOBALS['TSFE']->id) . ',

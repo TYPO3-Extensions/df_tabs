@@ -8,4 +8,8 @@ t3lib_extMgm::addPItoST43('df_tabs', 'Classes/Controller/PluginController.php', 
 
 $GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['dftabs'] = 'EXT:df_tabs/Classes/Ajax/LoadAjax.php';
 
+// set global storage pid
+$dfTabsExtConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['df_tabs']);
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['df_tabs']['useJQuery'] = $dfTabsExtConf['useJQuery'] ? 1 : 0;
+
 ?>

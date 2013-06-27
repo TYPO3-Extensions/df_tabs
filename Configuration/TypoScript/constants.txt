@@ -4,6 +4,9 @@ plugin.tx_dftabs_plugin1 {
 		history = EXT:df_tabs/Resources/Public/Scripts/History/History.js
 		historyRouting = EXT:df_tabs/Resources/Public/Scripts/History/History.Routing.js
 		app = EXT:df_tabs/Resources/Public/Scripts/df_tabs.js
+
+		jqueryHistory = EXT:df_tabs/Resources/Public/Scripts/History/jquery.history.min.js
+		jqueryApp = EXT:df_tabs/Resources/Public/Scripts/jquery.tabs.js
 	}
 
 		# typoscript specific options
