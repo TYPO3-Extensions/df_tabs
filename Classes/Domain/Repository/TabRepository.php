@@ -83,7 +83,7 @@ class Tx_DfTabs_Domain_Repository_TabRepository {
 
 		// access protection checks for the given records
 		$configuration = array(
-			'tables' => 'pages,tt_content',
+			'tables' => 'tt_content,pages',
 			'source' => $records,
 			'dontCheckPid' => 1,
 			'conf.' => array(
