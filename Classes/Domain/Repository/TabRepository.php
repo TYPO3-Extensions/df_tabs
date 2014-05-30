@@ -81,7 +81,26 @@ class Tx_DfTabs_Domain_Repository_TabRepository {
 			$records = $this->contentObject->stdWrap($records, $stdWrap);
 		}
 
-		/** @noinspection PhpParamsInspection */
+		// access protection checks for the given records
+		$configuration = array(
+			'tables' => 'pages,tt_content',
+			'source' => $records,
+			'dontCheckPid' => 1,
+			'conf.' => array(
+				'pages' => 'TEXT',
+				'pages.' => array(
+					'data' => 'field:uid',
+					'wrap' => 'pages_|,',
+				),
+				'tt_content' => 'TEXT',
+				'tt_content.' => array(
+					'data' => 'field:uid',
+					'wrap' => 'tt_content_|,',
+				),
+			),
+		);
+		$records = $this->contentObject->RECORDS($configuration);
+
 		return t3lib_div::trimExplode(',', $records, TRUE);
 	}
 
