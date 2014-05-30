@@ -110,6 +110,7 @@ class Tx_DfTabs_Service_ConfigurationServiceTest extends Tx_DfTabs_BaseTestCase 
 	 */
 	public function getConfigurationIgnoresUndefinedEntriesInFlexformConfiguration() {
 		$expectedConfiguration = array(
+			'useJQuery' => '1',
 			'mode' => 'mode',
 		);
 
@@ -133,6 +134,7 @@ class Tx_DfTabs_Service_ConfigurationServiceTest extends Tx_DfTabs_BaseTestCase 
 	 */
 	public function getConfigurationHandlesSpecialTitlesPropertyInFlexformSource() {
 		$expectedConfiguration = array(
+			'useJQuery' => '1',
 			'titles' => array('foo', 'bar'),
 		);
 
@@ -155,6 +157,7 @@ class Tx_DfTabs_Service_ConfigurationServiceTest extends Tx_DfTabs_BaseTestCase 
 	 */
 	public function getConfigurationHandlesSpecialTitlesPropertyInTypoScriptSource() {
 		$expectedConfiguration = array(
+			'useJQuery' => '1',
 			'titles' => array('foo', 'bar'),
 		);
 
