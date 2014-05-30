@@ -129,7 +129,7 @@ var TabBar = new Class({
 			method: 'get',
 			url: 'index.php?eID=dftabs',
 			onComplete: function(response) {
-				var elements = new Element('div', {	html: response }).getChildren();
+				var elements = new Element('div', {    html: response }).getChildren();
 				Object.each(elements, function(response, index) {
 					var element = $(this.options.classPrefix + 'tabContent' + (parseInt(index) + 1));
 					if (element) {
@@ -141,10 +141,10 @@ var TabBar = new Class({
 				this.finalizeInitialisation();
 			}.bind(this)
 		})).send(
-			'df_tabs[id]=' + this.options.ajaxPageId +
-			'&df_tabs[records]=' + this.options.ajaxRecords +
-			'&df_tabs[mode]=' + this.options.ajaxPluginMode
-		);
+				'df_tabs[id]=' + this.options.ajaxPageId +
+					'&df_tabs[records]=' + this.options.ajaxRecords +
+					'&df_tabs[mode]=' + this.options.ajaxPluginMode
+			);
 	},
 
 	/**
@@ -239,7 +239,9 @@ var TabBar = new Class({
 		}
 
 		if (visibilityChange) {
-			document.addEventListener(visibilityChange, this.toggleAutoplayBasedOnVisibility.bind(this, [hidden]), false);
+			document.addEventListener(visibilityChange, this.toggleAutoplayBasedOnVisibility.bind(this, [
+				hidden
+			]), false);
 			this.toggleAutoplayBasedOnVisibility(hidden);
 		} else {
 			this.startAutoPlay();
@@ -255,7 +257,7 @@ var TabBar = new Class({
 	 * @return {void}
 	 */
 	initHistory: function() {
-			// configure the History routing mechanism
+		// configure the History routing mechanism
 		(new History.Route({
 			defaults: [],
 			flags: 'i',
@@ -337,7 +339,7 @@ var TabBar = new Class({
 		nextTabIndex = parseInt(nextTabIndex);
 		if (isNaN(nextTabIndex) || this.previousTab === nextTabIndex ||
 			nextTabIndex < 0 || nextTabIndex >= this.elementMap.length
-		) {
+			) {
 			return this;
 		}
 

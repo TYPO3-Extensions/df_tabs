@@ -47,7 +47,7 @@ class Tx_DfTabs_Wizards_ContentElementWizard {
 			'title' => $language->getLLL('plugin1_title', $locallang),
 			'description' => $language->getLLL('plugin1_plus_wiz_description', $locallang),
 			'params' => '&defVals[tt_content][CType]=list' .
-			'&defVals[tt_content][list_type]=df_tabs_plugin1'
+				'&defVals[tt_content][list_type]=df_tabs_plugin1'
 		);
 
 		return $wizardItems;

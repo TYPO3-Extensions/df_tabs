@@ -8,7 +8,7 @@ plugin.tx_dftabs_plugin1 {
 		jqueryApp = EXT:df_tabs/Resources/Public/Scripts/jquery.tabs.js
 	}
 
-		# typoscript specific options
+	# typoscript specific options
 	enableJavascript = 1
 	defaultTabTitle = Tab
 	classPrefix = tx-dftabs-
@@ -20,15 +20,15 @@ plugin.tx_dftabs_plugin1 {
 	animationCallback =
 	ajax = 0
 
-		# flexform options for the plugin usage with plain typoscript
+	# flexform options for the plugin usage with plain typoscript
 	enableAutoPlay = 0
 	autoPlayInterval = 7000
 	enableMouseOver = 0
 	mode = tt_content
 	titles =
-	data = 
+	data =
 
-		# pages mode related configuration settings
+	# pages mode related configuration settings
 	pages {
 		limit = 999
 		orderBy = colPos,sorting
@@ -37,16 +37,16 @@ plugin.tx_dftabs_plugin1 {
 		titleField = title
 		linkField = target
 
-			# be careful that this text will be rendered in the AJAX version too (Cloaking)
+		# be careful that this text will be rendered in the AJAX version too (Cloaking)
 		ajaxFallbackTextField = subtitle
 	}
 
-		# tt_content mode related configuration settings
+	# tt_content mode related configuration settings
 	tt_content {
 		titleField = header
 		linkField = header_link
 
-			# be careful that this text will be rendered in the AJAX version too (Cloaking)
+		# be careful that this text will be rendered in the AJAX version too (Cloaking)
 		ajaxFallbackTextField = altText
 	}
 }

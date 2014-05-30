@@ -9,7 +9,7 @@
 			<authorEmail>stefan.galinski@gmail.com</authorEmail>
 		</header>
 		<body>
-		<trans-unit id="flexform.sheets.general.ajax" approved="yes" xml:space="preserve">
+			<trans-unit id="flexform.sheets.general.ajax" approved="yes" xml:space="preserve">
 			<source>Enable AJAX</source>
 			<target>AJAX aktivieren</target>
 		</trans-unit>
