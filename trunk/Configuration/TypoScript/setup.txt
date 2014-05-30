@@ -1,0 +1,172 @@
+page.includeCSS {
+	dftabs = {$plugin.tx_dftabs_plugin1.css}
+}
+
+page.includeJS {
+	history = {$plugin.tx_dftabs_plugin1.js.history}
+	history.if.isFalse.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
+
+	historyRouting = {$plugin.tx_dftabs_plugin1.js.historyRouting}
+	historyRouting.if.isFalse.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
+
+	dftabs = {$plugin.tx_dftabs_plugin1.js.app}
+	dftabs.if.isFalse.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
+
+	dftabs_jQuery = {$plugin.tx_dftabs_plugin1.js.jqueryApp}
+	dftabs_jQuery.if.isTrue.data = global:TYPO3_CONF_VARS|EXTCONF|df_tabs|useJQuery
+}
+
+plugin.tx_dftabs_plugin1 {
+	# typoscript only options
+	enableJavascript = {$plugin.tx_dftabs_plugin1.enableJavascript}
+	defaultTabTitle = {$plugin.tx_dftabs_plugin1.defaultTabTitle}
+	classPrefix = {$plugin.tx_dftabs_plugin1.classPrefix}
+	hashName = {$plugin.tx_dftabs_plugin1.hashName}
+	pollingInterval = {$plugin.tx_dftabs_plugin1.pollingInterval}
+	animationSpeed = {$plugin.tx_dftabs_plugin1.animationSpeed}
+	menuNodeType = {$plugin.tx_dftabs_plugin1.menuNodeType}
+	contentNodeType = {$plugin.tx_dftabs_plugin1.contentNodeType}
+	animationCallback = {$plugin.tx_dftabs_plugin1.animationCallback}
+	ajax = {$plugin.tx_dftabs_plugin1.ajax}
+
+	# flexform options for the usage of this plugin inside plain typoscript
+	enableAutoPlay = {$plugin.tx_dftabs_plugin1.enableAutoPlay}
+	autoPlayInterval = {$plugin.tx_dftabs_plugin1.autoPlayInterval}
+	enableMouseOver = {$plugin.tx_dftabs_plugin1.enableMouseOver}
+	mode = {$plugin.tx_dftabs_plugin1.mode}ext_conf_template.txt
+	titles = {$plugin.tx_dftabs_plugin1.titles}
+	pages = {$plugin.tx_dftabs_plugin1.pages}
+	tt_content = {$plugin.tx_dftabs_plugin1.tt_content}
+
+	# javascript events
+	events {
+		onBeforeInitialize = function() {}
+		onAfterInitialize = function() {}
+		onTabChange = function() {}
+	}
+
+	# pages mode related configuration settings
+	pages {
+		limit = {$plugin.tx_dftabs_plugin1.pages.limit}
+		orderBy = {$plugin.tx_dftabs_plugin1.pages.orderBy}
+		additionalWhere = {$plugin.tx_dftabs_plugin1.pages.additionalWhere}
+		titleField = {$plugin.tx_dftabs_plugin1.pages.titleField}
+		linkField = {$plugin.tx_dftabs_plugin1.pages.linkField}
+		ajaxFallbackTextField = {$plugin.tx_dftabs_plugin1.pages.ajaxFallbackTextField}
+	}
+
+	# tt_content mode related configuration settings
+	tt_content {
+		titleField = {$plugin.tx_dftabs_plugin1.tt_content.titleField}
+		linkField = {$plugin.tx_dftabs_plugin1.tt_content.linkField}
+		ajaxFallbackTextField = {$plugin.tx_dftabs_plugin1.tt_content.ajaxFallbackTextField}
+	}
+
+	# output customization
+	stdWrap {
+		# tab content title (normally hidden in JS mode)
+		tabTitle {
+			wrap = <h4 class="###CLASSES###">|</h4>
+		}
+
+		# wrap around all tab content elements
+		tabContents {
+			wrap = <div class="###CLASSES###" id="###ID###">|</div>
+		}
+
+		# tab content element
+		tabContent {
+			wrap = <div class="###CLASSES###" id="###ID###">|</div>
+		}
+
+		# wrap around all tab menu entries
+		tabMenu {
+			wrap = <ul class="###CLASSES###" id="###ID###">|</ul>
+		}
+
+		# tab menu entry (###LINK### can also be used in combination with the linkField property)
+		tabMenuEntry {
+			wrap = <li id="###ID###" class="###CLASSES###"><a href="###LINK_ANCHOR###">|</a></li>
+
+			# alternative wrap if you want to jump directly to the tab if the location hash changes
+			# wrap = <li id="###ID###" class="###CLASSES###"><a href="###LINK_ANCHOR###" id="###LINK_ID###">|</a></li>
+		}
+	}
+
+	# record customization
+	stdWrap {
+		# pages flexform field
+		# Functionality: Always take the sub-pages if none were selected.
+		pages.ifEmpty.cObject = CONTENT
+		pages.ifEmpty.cObject {
+			table = pages
+			select {
+				pidInList = this
+				orderBy = sorting
+				selectFields = uid
+			}
+
+			renderObj = TEXT
+			renderObj {
+				field = uid
+				wrap = |,
+			}
+		}
+
+		# tt_content flexform field
+		# Functionality: By default, we fetch all existing records after the current one,
+		# if the record selection is empty.
+		tt_content.ifEmpty.cObject < styles.content.get
+		tt_content.ifEmpty.cObject {
+			select {
+				begin = 1
+				where >
+				andWhere.cObject = TEXT
+				andWhere.cObject {
+					dataWrap = colPos={TSFE:register|dftabs_pluginElement|colPos}
+				}
+			}
+
+			renderObj = TEXT
+			renderObj {
+				field = _LOCALIZED_UID // uid
+				wrap = |,
+			}
+		}
+
+		# Only in TypoScript Mode
+		#
+		# Content of the Tabs (tab<No.> will be incremented for each tab)
+		#
+		# Example:
+		# typoscriptData.tab1.cObject = TEXT
+		# typoscriptData.tab1.cObject.value = myTabContent
+		typoscriptData =
+
+		# Only in TypoScript Mode
+		#
+		# Link information for the tab menu entries if required
+		# (tab<No.> will be incremented for each tab)
+		#
+		# Example:
+		# typoscriptLinks.tab1.cObject = TEXT
+		# typoscriptLinks.tab1.cObject.value = 12 _blank
+		typoscriptLinks =
+
+		# Only in TypoScript Mode
+		#
+		# Fallback text for the ajax option
+		# Note: This text must be visibile in the fallback and AJAX version,
+		# because of cloaking issues!
+		# (tab<No.> will be incremented for each tab)
+		#
+		# Example:
+		# typoscriptAjaxFallbackText.tab1.cObject = TEXT
+		# typoscriptAjaxFallbackText.tab1.cObject.value = Fallback Text
+		typoscriptAjaxFallbackText =
+
+		# Extra configuration for the rendering of tt_content elements
+		# for the modes pages, tt_content and combined
+		records =
+	}
+}
