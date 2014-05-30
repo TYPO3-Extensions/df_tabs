@@ -44,6 +44,7 @@ class Tx_DfTabs_Ajax_LoadAjax {
 	 */
 	public function main() {
 		tslib_eidtools::connectDB();
+		tslib_eidtools::initTCA();
 
 		$parameters = t3lib_div::_GP('df_tabs');
 		$this->initTSFE($parameters['id']);
